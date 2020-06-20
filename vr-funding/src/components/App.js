@@ -1,7 +1,7 @@
 import React from "react";
+import Nav from "./nav";
 import {BrowserRouter as Router, Route, Switch, Link} from "react-router-dom";
-import logo from "./styles/images/VRFP_logo.png";
-import "./styles/less/index.less";
+import "./styles/css/index.css";
 
 function App() {
 	return <div className="App">
@@ -9,7 +9,7 @@ function App() {
 
      {/* HOME PAGE -- SIGNUP & LOGIN  */}
       <Route path="/" exact>
-          <img src={logo} alt=""/>
+        <Nav />
       </Route>
 
       { /*  DASHBOARD  */ }

@@ -1,5 +1,8 @@
 # FrontEnd
 
+- To compile LESS -- cd into styles folder and use "less-watch-compiler less css index.less" 
+    - **MUST INCLUDE INDEX.LESS**
+
 ## ☝️ Proposal
 
 ### What problem does your app solve?
