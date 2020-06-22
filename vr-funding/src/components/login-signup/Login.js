@@ -15,26 +15,24 @@ const initialErr = {
     password: '',
 }
 
-const initialUser = [];
-
+const initialDisabled = true;
 
 export default function Login() {
-const [disabled, setDisabled] = useState(true);
-const [user, setUser] = useState(initialUser);
+const [disabled, setDisabled] = useState(initialDisabled);
 const [formValues, setFormValues] = useState(initialVal)
 const [formErrors, setFormErrors] = useState(initialErr)
     
-
+let history = useHistory();
 
 const onSubmitHandler = e => {
         axiosWithAuth()
         .post(`URL`, )
     }
 
-const postUser = (newUser) => {
+const loginUser = (newUser) => {
     axios.post("https://regres.in/api/users", newUser)
     .then((response) => {
-        setUser([...user, response.data]);
+        console.log(response)
     })
     .catch((err) => {
         console.log(err);
@@ -66,6 +64,23 @@ const onInputChange = (e) => {
             [name]: value,
         })
 }
+
+const onSubmit = e => {
+    e.preventDefault();
+
+    const user = {
+        username: formValues.username.trim(),
+        password: formValues.password.trim(),
+    }
+    loginUser(user);
+}
+
+useEffect(() => {
+    loginFormSchema.isValid(formValues).then((valid) => {
+        //if values meet validation, enable the login button
+        setDisabled(!valid)
+    })
+}, [formValues])
 
   return <div>
       <form >
