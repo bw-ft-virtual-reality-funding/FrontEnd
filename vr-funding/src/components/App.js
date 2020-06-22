@@ -23,7 +23,9 @@ function App() {
           </Route>
 
           {/*  DASHBOARD  */}
-          <PrivateRoute path="/dashboard"></PrivateRoute>
+          <PrivateRoute path="/dashboard">
+            <FundraiserForm/>
+          </PrivateRoute>
         </Router>
       </div>
     </VRProvider>

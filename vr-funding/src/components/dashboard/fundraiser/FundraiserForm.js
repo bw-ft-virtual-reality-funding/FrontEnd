@@ -1,6 +1,7 @@
 import React, { useState, useEffect} from 'react'
 import axios from 'axios'
 import * as Yup from 'yup'
+import fundraiserFormSchema from './fundraiserFormSchema'
 
 const initialFormValues = {
     title: '',
@@ -29,7 +30,7 @@ export default function FundraiserForm(){
         axios.get(URL)
             .then(res => {
                 console.log(res)
-                setFundraiser(res.data)
+                setFundraiser(res.data.data)
             })
             .catch(err => {
                 debugger
@@ -49,16 +50,65 @@ export default function FundraiserForm(){
         })
     }
 
+    const onInputChange = evt => {
+        const name = evt.target.name
+        const value = evt.target.value
+
+        Yup
+        .reach(fundraiserFormSchema, name)
+        .validate(value)
+
+        .then(valid => {
+          setFormErrors({
+            ...formErrors,
+            [name]: ""
+          });
+        })
+        .catch(err => {
+          setFormErrors({
+            ...formErrors,
+            [name]: err.errors[0]
+          });
+        });
+    
+        setFormValues({
+          ...formValues,
+          [name]: value
+        })
+      }
+
+    const onSubmit = evt => {
+        evt.preventDefault()
+
+        const newFundraiser = {
+          title: formValues.title.trim(),
+          description: formValues.description,
+          imgUrl: formValues.imgUrl,
+        }
+        
+        postNewFundraiser(newFundraiser) 
+    }
+
+    useEffect(() => {
+        getFundraisers()
+    }, [])
+
+    useEffect(() => {
+        fundraiserFormSchema.isValid(formValues).then(valid => {
+            setDisabled(!valid);
+        });
+    }, [formValues])
+
     return (
-        <form className='form container'>
+        <form className='form container' onSubmit={onSubmit}>
 
             <div className='form-gorup inputs'>
                 <h4>Fundraiser Details</h4>
 
                 <label>Fundraiser Name&nbsp;
                     <input
-                        // value={}
-                        // onChange={}
+                        value={formValues.title}
+                        onChange={onInputChange}
                         name='title'
                         type='text'                        
                     />
@@ -67,17 +117,17 @@ export default function FundraiserForm(){
                 
                 <label>Image Url&nbsp;
                     <input
-                        // value={}
-                        // onChange={}
-                        name='imgURL'
+                        value={formValues.imgUrl}
+                        onChange={onInputChange}
+                        name='imgUrl'
                         type='text'                        
                     />
                 </label>
 
                 <label>Description&nbsp;
                     <input
-                        // value={}
-                        // onChange={}
+                        value={formValues.description}
+                        onChange={onInputChange}
                         name='description'
                         type='text'                        
                     />
@@ -89,9 +139,9 @@ export default function FundraiserForm(){
             
 
                 <div className='errors'>
-                    <div></div>
-                    <div></div>
-                    <div></div>
+                    <div>{formErrors.title}</div>
+                    <div>{formErrors.imgUrl}</div>
+                    <div>{formErrors.description}</div>
                 </div>
             </div>
         </form>
