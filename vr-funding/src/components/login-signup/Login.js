@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 export default function Login() {
 	const [loginUser, setLoginUser] = useState({});
@@ -10,7 +11,7 @@ export default function Login() {
 			.post(`URL`, loginUser)
 			.then(res => {
 				console.log(res);
-				// localStorage.setItem("token", res.data.payload)
+				// useLocalStorage("token", res.data.payload);
 			})
 			.catch(err => {
 				console.log(err);
