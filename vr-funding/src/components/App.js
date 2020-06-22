@@ -5,24 +5,27 @@ import "./styles/css/index.css";
 import PrivateRoute from "./utils/PrivateRoute";
 import Login from "./login-signup/Login";
 import Signup from "./login-signup/Signup";
+import { VRProvider } from "./context/VRContext";
 
 function App() {
   return (
-    <div className="App">
-      <Router>
-        {/* HOME PAGE -- SIGNUP & LOGIN  */}
-        <Route path="/" exact>
-          <Nav />
-          <Login />
-        </Route>
-        <Route path="/Signup">
-          <Signup />
-        </Route>
+    <VRProvider>
+      <div className="App">
+        <Router>
+          {/* HOME PAGE -- SIGNUP & LOGIN  */}
+          <Route path="/" exact>
+            <Nav />
+            <Login />
+          </Route>
+          <Route path="/Signup">
+            <Signup />
+          </Route>
 
-        {/*  DASHBOARD  */}
-        <PrivateRoute path="/dashboard"></PrivateRoute>
-      </Router>
-    </div>
+          {/*  DASHBOARD  */}
+          <PrivateRoute path="/dashboard"></PrivateRoute>
+        </Router>
+      </div>
+    </VRProvider>
   );
 }
 
