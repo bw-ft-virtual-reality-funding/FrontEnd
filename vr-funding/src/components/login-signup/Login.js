@@ -1,37 +1,50 @@
-import React from "react";
-import { Link } from 'react-router-dom'
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 export default function Login() {
-    const onSubmitHandler = e => {
-        axiosWithAuth()
-        .post(`URL`, )
-    }
+	const [loginUser, setLoginUser] = useState({});
 
-  return <div>
-      <form>
-          <h1>Login</h1>
-          
-          <label htmlFor="username">
-              Username&nbsp;
-              <input name="username" type="text"/>
-          </label>
+	const onSubmitHandler = e => {
+		axiosWithAuth()
+			.post(`URL`, loginUser)
+			.then(res => {
+				console.log(res);
+				// localStorage.setItem("token", res.data.payload)
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	};
 
-          <label htmlFor="password">
-              Password&nbsp;
-              <input name="password" type="password"/>
-          </label>
+	return (
+		<div>
+			<form>
+				<h1>Login</h1>
 
-          <div>
-              <button>Login</button>
-          </div>
+				<label htmlFor="username">
+					Username&nbsp;
+					<input name="username" type="text" />
+				</label>
 
-          <div className="errors">
-              <div></div>
-              <div></div>
-          </div>
-      </form>
+				<label htmlFor="password">
+					Password&nbsp;
+					<input name="password" type="password" />
+				</label>
 
-      <div>Don't have an account yet?<Link to="/Signup">Sign Up</Link> </div>
-  </div>;
+				<div>
+					<button>Login</button>
+				</div>
+
+				<div className="errors">
+					<div></div>
+					<div></div>
+				</div>
+			</form>
+
+			<div>
+				Don't have an account yet?<Link to="/Signup">Sign Up</Link>{" "}
+			</div>
+		</div>
+	);
 }
