@@ -2,12 +2,11 @@ import React from "react";
 import Nav from "./nav";
 import {BrowserRouter as Router, Route, Switch, Link} from "react-router-dom";
 import "./styles/css/index.css";
+import PrivateRoute from "./utils/PrivateRoute";
 
 function App() {
 	return <div className="App">
     <Router>
-
-      {/* //I'm adding this to commit */}
 
      {/* HOME PAGE -- SIGNUP & LOGIN  */}
       <Route path="/" exact>
@@ -15,9 +14,9 @@ function App() {
       </Route>
 
       { /*  DASHBOARD  */ }
-      <Route >
+      <PrivateRoute path="/dashboard">
 
-      </Route>
+      </PrivateRoute>
     </Router>
   </div>;
 }
