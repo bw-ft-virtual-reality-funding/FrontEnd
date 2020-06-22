@@ -2,6 +2,7 @@ import React, { useState, useEffect} from 'react'
 import axios from 'axios'
 import * as Yup from 'yup'
 import fundraiserFormSchema from './fundraiserFormSchema'
+import FundraiserCard from './FundraiserCard'
 
 const initialFormValues = {
     title: '',
@@ -100,50 +101,60 @@ export default function FundraiserForm(){
     }, [formValues])
 
     return (
-        <form className='form container' onSubmit={onSubmit}>
+        <div className='container'>
+            <form className='form container' onSubmit={onSubmit}>
 
-            <div className='form-gorup inputs'>
-                <h4>Fundraiser Details</h4>
+                <div className='form-gorup inputs'>
+                    <h4>Fundraiser Details</h4>
 
-                <label>Fundraiser Name&nbsp;
-                    <input
-                        value={formValues.title}
-                        onChange={onInputChange}
-                        name='title'
-                        type='text'                        
-                    />
-                </label>
+                    <label>Fundraiser Name&nbsp;
+                        <input
+                            value={formValues.title}
+                            onChange={onInputChange}
+                            name='title'
+                            type='text'                        
+                        />
+                    </label>
 
-                
-                <label>Image Url&nbsp;
-                    <input
-                        value={formValues.imgUrl}
-                        onChange={onInputChange}
-                        name='imgUrl'
-                        type='text'                        
-                    />
-                </label>
+                    
+                    <label>Image Url&nbsp;
+                        <input
+                            value={formValues.imgUrl}
+                            onChange={onInputChange}
+                            name='imgUrl'
+                            type='text'                        
+                        />
+                    </label>
 
-                <label>Description&nbsp;
-                    <input
-                        value={formValues.description}
-                        onChange={onInputChange}
-                        name='description'
-                        type='text'                        
-                    />
-                </label>
-            </div>
-
-            <div className='form-group submit'>
-                <button disabled={disabled}>Submit</button>
-            
-
-                <div className='errors'>
-                    <div>{formErrors.title}</div>
-                    <div>{formErrors.imgUrl}</div>
-                    <div>{formErrors.description}</div>
+                    <label>Description&nbsp;
+                        <input
+                            value={formValues.description}
+                            onChange={onInputChange}
+                            name='description'
+                            type='text'                        
+                        />
+                    </label>
                 </div>
-            </div>
-        </form>
+
+                <div className='form-group submit'>
+                    <button disabled={disabled}>Submit</button>
+                
+
+                    <div className='errors'>
+                        <div>{formErrors.title}</div>
+                        <div>{formErrors.imgUrl}</div>
+                        <div>{formErrors.description}</div>
+                    </div>
+                </div>
+            </form>
+
+            {
+                fundraiser.map(fundraiser => {
+                    return (
+                        <FundraiserCard key={fundraiser.id} details={fundraiser}/>
+                    )
+                })
+            }
+        </div>
     )
 }
