@@ -7,6 +7,8 @@ function App() {
 	return <div className="App">
     <Router>
 
+      {/* //I'm adding this to commit */}
+
      {/* HOME PAGE -- SIGNUP & LOGIN  */}
       <Route path="/" exact>
         <Nav />
