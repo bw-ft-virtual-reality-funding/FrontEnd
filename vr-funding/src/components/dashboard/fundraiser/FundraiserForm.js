@@ -1,17 +1,17 @@
 import React, { useState, useEffect} from 'react'
 import axios from 'axios'
-import * as yup from 'yup'
+import * as Yup from 'yup'
 
 const initialFormValues = {
     title: '',
     description: '',
-    imgLink: '',
+    imgUrl: '',
 }
 
 const initialFormErrors = {
     title: '',
     description: '',
-    imgLink: '',
+    imgUrl: '',
 }
 
 const initialFundraiser = []
@@ -45,11 +45,11 @@ export default function FundraiserForm(){
                 </label>
 
                 
-                <label>Image Link&nbsp;
+                <label>Image Url&nbsp;
                     <input
                         value={}
                         onChange={}
-                        name='imgLink'
+                        name='imgURL'
                         type='text'                        
                     />
                 </label>
