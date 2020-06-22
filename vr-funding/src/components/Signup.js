@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import {Link} from 'react-router-dom'
 
 export default function Signup() {
+    const [disabled, setDisabled] = useState(true);
+
+
     return <div>
     <form>
         <h1>Sign Up</h1>
@@ -32,7 +35,7 @@ export default function Signup() {
         </label>
 
         <div>
-            <button>Sign Up Now</button>
+            <button disabled={disabled}>Sign Up Now</button>
         </div>
 
         <div className="errors">
