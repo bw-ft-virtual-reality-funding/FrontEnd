@@ -3,6 +3,9 @@
 - To compile LESS -- cd into styles folder and use "less-watch-compiler less css index.less" 
     - **MUST INCLUDE INDEX.LESS**
 
+    [AppUrl] = https://vr-funding.vr-funding-project.vercel.app/
+    [AppUrl] = https://vr-funding-khaki.vercel.app/
+
 ## ☝️ Proposal
 
 ### What problem does your app solve?
