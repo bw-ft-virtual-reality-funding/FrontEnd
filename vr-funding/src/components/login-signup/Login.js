@@ -83,17 +83,17 @@ useEffect(() => {
 }, [formValues])
 
   return <div>
-      <form >
+      <form onSubmit={onSubmit}>
           <h1>Login</h1>
           
           <label htmlFor="username">
               Username&nbsp;
-              <input name="username" type="text" />
+              <input name="username" type="text" onChange={onInputChange} value={formValues.username} />
           </label>
 
           <label htmlFor="password">
               Password&nbsp;
-              <input name="password" type="password" />
+              <input name="password" type="password" onChange={onInputChange} value={formValues.password} />
           </label>
 
           <div>
@@ -101,8 +101,8 @@ useEffect(() => {
           </div>
 
           <div className="errors">
-              <div></div>
-              <div></div>
+              <div>{formErrors.username}</div>
+              <div>{formErrors.password}</div>
           </div>
       </form>
 
