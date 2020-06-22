@@ -3,6 +3,7 @@ import Nav from "./nav";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import "./styles/css/index.css";
 import PrivateRoute from "./utils/PrivateRoute";
+import Login from './Login'
 
 function App() {
   return (
@@ -10,9 +11,10 @@ function App() {
       <Router>
         {/* HOME PAGE -- SIGNUP & LOGIN  */}
         <Route path="/" exact>
-          <Nav>
-            <Link to="/Login">Login</Link>
-          </Nav>
+          <Nav />
+        </Route>
+        <Route path="/Login">
+            <Login/>
         </Route>
 
         {/*  DASHBOARD  */}
