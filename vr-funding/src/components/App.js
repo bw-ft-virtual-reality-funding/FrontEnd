@@ -14,8 +14,8 @@ function App() {
       <div className="App">
         <Router>
           {/* HOME PAGE -- SIGNUP & LOGIN  */}
+          <Nav />
           <Route path="/" exact>
-            <Nav />
             <Login />
           </Route>
           <Route path="/Signup">

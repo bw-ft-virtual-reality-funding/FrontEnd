@@ -3,6 +3,7 @@ import { useHistory, Link } from "react-router-dom";
 import signUpFormSchema from "./validation/signUpFormSchema";
 import * as yup from "yup";
 import axios from "axios";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const initialVal = {
   firstname: "",
@@ -32,33 +33,32 @@ export default function Signup() {
 
   let history = useHistory();
 
-  const postNewUser = (newUser) => {
-    axios
-      //post the new user (form data) to the /users endpoint
-      .post("URL", newUser) //pending url
-      .then((response) => {
-        console.log(response);
-        //will navigate to login page so they can sign in with new account
-        history.push("/Login");
+
+  const postNewUser = newUser => {
+    axiosWithAuth()
+      .post(`https://virtual-reality-fundraising.herokuapp.com/api/register`, formValues)
+      .then(res => {
+        console.log(res);
+        // localStorage.setItem("token", res.data.payload);
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
       });
   };
 
-  const onInputChange = (e) => {
+  const onInputChange = e => {
     const { name, value } = e.target;
 
     yup
       .reach(signUpFormSchema, name)
       .validate(value)
-      .then((valid) => {
+      .then(valid => {
         setFormErrors({
           ...formErrors,
           [name]: "",
         });
       })
-      .catch((err) => {
+      .catch(err => {
         setFormErrors({
           ...formErrors,
           [name]: err.errors[0],
@@ -70,7 +70,7 @@ export default function Signup() {
     });
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = e => {
     e.preventDefault();
 
     const newUser = {
@@ -84,86 +84,80 @@ export default function Signup() {
   };
 
   useEffect(() => {
-    signUpFormSchema.isValid(formValues).then((valid) => {
+    signUpFormSchema.isValid(formValues).then(valid => {
+
       //if form values meet validation enable the button
       setDisabled(!valid);
     });
   }, [formValues]);
 
   return (
-    <div>
-      <form onSubmit={onSubmit}>
-        <h1>Sign Up</h1>
-        <h3>Create your account.</h3>
+    <form onSubmit={onSubmit}>
+      <h1>Sign Up</h1>
+      <h3>Create your account.</h3>
 
-        <label>
-          First Name&nbsp;
-          <input
-            name="firstname"
-            type="text"
-            onChange={onInputChange}
-            value={formValues.firstname}
-          />
-        </label>
-        <div>{formErrors.firstname}</div>
+      {/* <label htmlFor="firstname">
+        First Name&nbsp; */}
+				<input
+        placeholder="First Name"
+          name="firstname"
+          type="text"
+          onChange={onInputChange}
+          value={formValues.firstname}
+        />
+      {/* </label> */}
+      <div>{formErrors.firstname}</div>
 
-        <label>
-          Last Name&nbsp;
-          <input
-            name="lastname"
-            type="text"
-            onChange={onInputChange}
-            value={formValues.lastname}
-          />
-        </label>
-        <div>{formErrors.lastname}</div>
+      {/* <label htmlFor="lastname">
+        Last Name */}
+				<input
+        placeholder="Last Name"
+          name="lastname"
+          type="text"
+          onChange={onInputChange}
+          value={formValues.lastname}
+        />
+      {/* </label> */}
+      <div>{formErrors.lastname}</div>
 
-        <label>
-          Email&nbsp;
-          <input
-            name="email"
-            type="email"
-            onChange={onInputChange}
-            value={formValues.email}
-          />
-        </label>
-        <div>{formErrors.email}</div>
+      {/* <label htmlFor="email">
+        Email */}
+				<input
+        placeholder="Email"
+          name="email"
+          type="email"
+          onChange={onInputChange}
+          value={formValues.email}
+        />
+      {/* </label> */}
+      <div>{formErrors.email}</div>
+      <div>{formErrors.username}</div>
 
-        <label>
-          Email&nbsp;
-          <input
-            name="username"
-            type="text"
-            onChange={onInputChange}
-            value={formValues.username}
-          />
-        </label>
-        <div>{formErrors.username}</div>
+      {/* <label htmlFor="password">
+        Password */}
+				<input
+        placeholder="Create Password"
+          name="password"
+          type="password"
+          onChange={onInputChange}
+          value={formValues.password}
+        />
+      {/* </label> */}
+      <div>{formErrors.password}</div>
+      <button className="button" type="submit" disabled={disabled}>Sign Up Now</button>
 
-        <label>
-          Password&nbsp;
-          <input
-            name="password"
-            type="password"
-            onChange={onInputChange}
-            value={formValues.password}
-          />
-        </label>
-        <div>{formErrors.password}</div>
-
-        <div>
-          <button disabled={disabled}>Sign Up Now</button>
-        </div>
-
-        <div className="errors">
-          <div></div>
-          <div></div>
-        </div>
-      </form>
-
-      <div>
-        Already have an account?<Link to="/">Login</Link>{" "}
+      <p>Are you a :</p>
+      <div className="role">
+        <input className="fundraiser" type="radio" name="role" />
+        <input className="funder" type="radio" name="role" />
       </div>
-    </div>
+
+      <div className="errors">
+        <div></div>
+        <div></div>
+      </div>
+
+      <p>Already have an account?</p><Link className="button" to="/">Login</Link>{" "}
+    </form>
   );
 }
