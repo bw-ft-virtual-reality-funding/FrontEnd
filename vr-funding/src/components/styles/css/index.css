@@ -126,23 +126,140 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+@font-face {
+  font-family: 'Krona One';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Krona One'), local('KronaOne-Regular'), url(https://fonts.gstatic.com/s/kronaone/v8/jAnEgHdjHcjgfIb1ZcUCMQ.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Ubuntu Regular'), local('Ubuntu-Regular'), url(https://fonts.gstatic.com/s/ubuntu/v14/4iCs6KVjbNBYlgo6eA.ttf) format('truetype');
+}
+* {
+  font-family: 'Ubuntu', sans-serif;
+}
+body {
+  font-family: 'Ubuntu', sans-serif;
+}
+.App {
+  background: #0053df;
+  background: linear-gradient(21deg, #0053df 0%, #b7ddff 57%, #ffffff 100%);
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Krona One', sans-serif;
+}
+.button {
+  background-color: navy;
+  color: white;
+  padding: 10px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+  width: 150px;
+  text-align: center;
+  letter-spacing: 1px;
+}
 nav {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 }
-nav .logo {
-  height: 20px;
+nav #logo {
+  height: 70px;
 }
 #navBar {
-  background-color: #000035;
+  background-color: #121242;
   width: 100%;
-  padding: 10px;
+  padding: 10px 0;
 }
 #navBar a {
   text-decoration: none;
   color: white;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-family: "Ubuntu", sans-serif;
   margin-right: 5%;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 99%;
+  height: 87.6vh;
+}
+form label {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+form input {
+  outline: none;
+  margin: 5px;
+  height: 20px;
+  padding: 5px;
+  width: 25%;
+  border: 0.5px solid gray;
+}
+form input::placeholder {
+  font-weight: bold;
+  color: #a09e9e;
+  letter-spacing: 2px;
+}
+form input:focus {
+  border: 0.5px solid navy;
+}
+form p {
+  margin: 5px;
+}
+form h1 {
+  margin: 5px;
+}
+form .role {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+form .role input[type="radio"] {
+  width: 50px;
+  -webkit-appearance: none;
+  background-color: navy;
+  transition: 0.4s ease;
+  cursor: pointer;
+  height: 40px;
+  width: 180px;
+  border-radius: 40px;
+  color: #506bb3;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+}
+form .role input[type="radio"]:checked {
+  background-color: #55a9f8;
+  color: white;
+  border: solid white 0.5px;
+}
+form .role .fundraiser::before {
+  content: "Fundraiser";
+  font-size: 1.3rem;
+  text-align: center;
+}
+form .role .funder::before {
+  content: "Funder";
+  font-size: 1.3rem;
+  text-align: center;
+}
+form .errors {
+  color: red;
 }

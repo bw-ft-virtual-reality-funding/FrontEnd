@@ -3,8 +3,15 @@
 - To compile LESS -- cd into styles folder and use "less-watch-compiler less css index.less" 
     - **MUST INCLUDE INDEX.LESS**
 
-    [AppUrl] = https://vr-funding.vr-funding-project.vercel.app/
-    [AppUrl] = https://vr-funding-khaki.vercel.app/
+    - [AppUrl] = https://vr-funding.vr-funding-project.vercel.app/
+    - [AppUrl] = https://vr-funding-khaki.vercel.app/
+
+## Api Endpoints
+    - https://virtual-reality-fundraising.herokuapp.com/api/projects
+    - https://virtual-reality-fundraising.herokuapp.com/api/users
+    - https://virtual-reality-fundraising.herokuapp.com/api/login
+    - https://virtual-reality-fundraising.herokuapp.com/api/register
+
 
 ## ☝️ Proposal
 
