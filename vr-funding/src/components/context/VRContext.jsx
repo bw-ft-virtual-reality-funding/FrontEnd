@@ -5,11 +5,11 @@ import { createContext, useState} from "react";
 export const VRContext = createContext();
 
 export const VRProvider = props => {
-    const [fundraisers, setFundraisers] = useState([]);
+    const [userDetails, setUserDetails] = useState([]);
     
     return (
         <VRContext.Provider
-        value={[fundraisers, setFundraisers]}
+        value={[userDetails, setUserDetails]}
         >
             {props.children}
         </VRContext.Provider>

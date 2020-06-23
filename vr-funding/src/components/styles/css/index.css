@@ -159,10 +159,12 @@ h6 {
   font-family: 'Krona One', sans-serif;
 }
 .button {
+  text-transform: uppercase;
   background-color: navy;
   color: white;
   padding: 10px;
   border-radius: 20px;
+  cursor: pointer;
   text-decoration: none;
   font-weight: bold;
   font-size: 1rem;
@@ -196,7 +198,7 @@ form {
   align-items: center;
   justify-content: center;
   width: 99%;
-  height: 87.6vh;
+  height: 90.5vh;
 }
 form label {
   width: 100%;
@@ -211,6 +213,7 @@ form input {
   padding: 5px;
   width: 25%;
   border: 0.5px solid gray;
+  border-radius: 20px;
 }
 form input::placeholder {
   font-weight: bold;
@@ -233,6 +236,7 @@ form .role {
 }
 form .role input[type="radio"] {
   width: 50px;
+  text-transform: uppercase;
   -webkit-appearance: none;
   background-color: navy;
   transition: 0.4s ease;
