@@ -25,19 +25,19 @@ const Login = props => {
 
 	let history = useHistory();
 
-	const loginUser = newUser => {
-		axios
-			.post("https://regres.in/api/users", newUser)
-			.then(response => {
-				console.log(response);
-			})
-			.catch(err => {
-				console.log(err);
-			})
-			.finally(() => {
-				setFormValues(initialVal);
-			});
-	};
+	// const loginUser = newUser => {
+	// 	axios
+	// 		.post("https://regres.in/api/users", newUser)
+	// 		.then(response => {
+	// 			console.log(response);
+	// 		})
+	// 		.catch(err => {
+	// 			console.log(err);
+	// 		})
+	// 		.finally(() => {
+	// 			setFormValues(initialVal);
+	// 		});
+	// };
 
 	const onInputChange = e => {
 		const { name, value } = e.target;
@@ -65,24 +65,27 @@ const Login = props => {
 
 	const onSubmitHandler = e => {
 		e.preventDefault();
-		axiosWithAuth()
-			.post(
-				`https://virtual-reality-fundraising.herokuapp.com/api/login`,
-				loginUser
-			)
-			.then(res => {
-				console.log(res);
-				// localStorage.setItem("token", res.data.payload);
-			})
-			.catch(err => {
-				console.log(err);
-			});
-
 		const user = {
 			username: formValues.username.trim(),
 			password: formValues.password.trim(),
 		};
-		loginUser(user);
+
+		axiosWithAuth()
+			.post(
+				`https://virtual-reality-fundraising.herokuapp.com/api/login`,
+				user
+			)
+			.then(res => {
+				console.log(res);
+				setFormValues(initialVal);
+				// localStorage.setItem("token", res.data.payload);
+				// localStorage.setItem("id", res.data.id);
+				history.push("/dashboard/profile")
+			})
+			.catch(err => {
+				console.log(err);
+				setFormErrors({ ...formErrors, invalid: "Incorrect username or password" });
+			});
 	};
 
 	useEffect(() => {
@@ -95,29 +98,25 @@ const Login = props => {
 	return (
 		<form onSubmit={onSubmitHandler}>
 			<h1>Login</h1>
+			<div className="errors">{formErrors.invalid}</div>
 
-			{/* <label htmlFor="username"> */}
-				{/* Username&nbsp; */}
-				<input
+			<input
 				placeholder="Username"
-					name="username"
-					type="text"
-					onChange={onInputChange}
-					value={formValues.username}
-				/>
-			{/* </label> */}
+				name="username"
+				type="text"
+				onChange={onInputChange}
+				value={formValues.username}
+			/>
 
-			{/* <label htmlFor="password"> */}
-				{/* Password&nbsp; */}
-				<input
+			<input
 				placeholder="Password"
-					name="password"
-					type="password"
-					onChange={onInputChange}
-					value={formValues.password}
-				/>
-			{/* </label> */}
-				<button className="button" type="submit" disabled={disabled}>Login</button>
+				name="password"
+				type="password"
+				onChange={onInputChange}
+				value={formValues.password}
+			/>
+
+			<button className="button" type="submit" disabled={disabled}>Login</button>
 			<div className="errors">
 				<div>{formErrors.username}</div>
 				<div>{formErrors.password}</div>

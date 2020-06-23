@@ -24,6 +24,7 @@ const signUpFormSchema = Yup.object().shape({
     .trim()
     .min(4, "Password entered is too short")
     .required("Your password is Required"),
+  role: Yup.string().oneOf(["Fundraiser", "Funder"], "Please select a role"),
 });
 
 export default signUpFormSchema;
