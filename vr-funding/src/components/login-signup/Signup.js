@@ -34,9 +34,12 @@ export default function Signup() {
 
   const postNewUser = (newUser) => {
     axios
-      .post("URL")
+      //post the new user (form data) to the /users endpoint
+      .post("URL", newUser) //pending url
       .then((response) => {
         console.log(response);
+        //will navigate to login page so they can sign in with new account
+        history.push("/Login");
       })
       .catch((err) => {
         console.log(err);
@@ -81,11 +84,11 @@ export default function Signup() {
   };
 
   useEffect(() => {
-      signUpFormSchema.isValid(formValues).then((valid) => {
-          //if form values meet validation enable the button
-          setDisabled(!valid);
-      })
-  }, [formValues])
+    signUpFormSchema.isValid(formValues).then((valid) => {
+      //if form values meet validation enable the button
+      setDisabled(!valid);
+    });
+  }, [formValues]);
 
   return (
     <div>
@@ -93,41 +96,60 @@ export default function Signup() {
         <h1>Sign Up</h1>
         <h3>Create your account.</h3>
 
-        <label htmlFor="firstname">
+        <label>
           First Name&nbsp;
-          <input name="firstname" type="text" onChange={onInputChange} value={formValues.firstname}/>
+          <input
+            name="firstname"
+            type="text"
+            onChange={onInputChange}
+            value={formValues.firstname}
+          />
         </label>
         <div>{formErrors.firstname}</div>
 
-
-        <label htmlFor="lastname">
+        <label>
           Last Name&nbsp;
-          <input name="lastname" type="text" onChange={onInputChange} value={formValues.lastname}/>
+          <input
+            name="lastname"
+            type="text"
+            onChange={onInputChange}
+            value={formValues.lastname}
+          />
         </label>
         <div>{formErrors.lastname}</div>
 
-
-        <label htmlFor="email">
+        <label>
           Email&nbsp;
-          <input name="email" type="email" onChange={onInputChange} value={formValues.email} />
+          <input
+            name="email"
+            type="email"
+            onChange={onInputChange}
+            value={formValues.email}
+          />
         </label>
         <div>{formErrors.email}</div>
 
-
-        <label htmlFor="username">
+        <label>
           Email&nbsp;
-          <input name="username" type="text" onChange={onInputChange} value={formValues.username} />
+          <input
+            name="username"
+            type="text"
+            onChange={onInputChange}
+            value={formValues.username}
+          />
         </label>
         <div>{formErrors.username}</div>
 
-
-        <label htmlFor="password">
+        <label>
           Password&nbsp;
-          <input name="password" type="password" onChange={onInputChange} value={formValues.password} />
+          <input
+            name="password"
+            type="password"
+            onChange={onInputChange}
+            value={formValues.password}
+          />
         </label>
         <div>{formErrors.password}</div>
-
-
 
         <div>
           <button disabled={disabled}>Sign Up Now</button>
