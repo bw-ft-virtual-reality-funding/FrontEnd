@@ -18,7 +18,7 @@ const initialFormErrors = {
 
 const initialFundraiser = []
 const initialDisabled = true
-const URL = 'https://virtual-reality-fundraising.herokuapp.com/api/users' //using until backend api is ready
+const URL = 'https://virtual-reality-fundraising.herokuapp.com/api/projects' //using until backend api is ready
 
 export default function FundraiserForm(){
 
@@ -27,16 +27,16 @@ export default function FundraiserForm(){
     const [formErrors, setFormErrors] = useState(initialFormErrors)
     const [disabled, setDisabled] = useState(initialDisabled)
 
-    const getFundraisers = () => {
-        axios.get(URL)
-        .then(res => {
-            console.log(res)
-            setFundraiser(res.data.data)
-        })
-        .catch(err => {
-           debugger
-        })
-    }
+    // const getFundraisers = () => {
+    //     axios.get(URL)
+    //     .then(res => {
+    //         console.log(res)
+    //         setFundraiser(res.data.data)
+    //     })
+    //     .catch(err => {
+    //        debugger
+    //     })
+    // }
 
     const postNewFundraiser = newFundraiser => {
         axios.post(URL, newFundraiser)
@@ -90,9 +90,9 @@ export default function FundraiserForm(){
         postNewFundraiser(newFundraiser) 
     }
 
-    useEffect(() => {
-        getFundraisers()
-    }, [])
+    // useEffect(() => {
+    //     getFundraisers()
+    // }, [])
 
     useEffect(() => {
         fundraiserFormSchema.isValid(formValues).then(valid => {
