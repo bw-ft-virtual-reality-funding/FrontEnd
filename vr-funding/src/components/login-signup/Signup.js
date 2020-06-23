@@ -33,6 +33,7 @@ export default function Signup() {
 
   let history = useHistory();
 
+
   const postNewUser = newUser => {
     axiosWithAuth()
       .post(`https://virtual-reality-fundraising.herokuapp.com/api/register`, formValues)
@@ -84,6 +85,7 @@ export default function Signup() {
 
   useEffect(() => {
     signUpFormSchema.isValid(formValues).then(valid => {
+
       //if form values meet validation enable the button
       setDisabled(!valid);
     });
