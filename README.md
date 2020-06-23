@@ -7,10 +7,11 @@
     - [AppUrl] = https://vr-funding-khaki.vercel.app/
 
 ## Api Endpoints
-    - https://virtual-reality-fundraising.herokuapp.com/api/projects
-    - https://virtual-reality-fundraising.herokuapp.com/api/users
-    - https://virtual-reality-fundraising.herokuapp.com/api/login
-    - https://virtual-reality-fundraising.herokuapp.com/api/register
+- https://virtual-reality-fundraising.herokuapp.com/api/projects
+- https://virtual-reality-fundraising.herokuapp.com/api/users
+- https://virtual-reality-fundraising.herokuapp.com/api/users/login
+- https://virtual-reality-fundraising.herokuapp.com/api/users/register
+- https://virtual-reality-fundraising.herokuapp.com/api/users/:id
 
 ## Shape of Data: 
     [
