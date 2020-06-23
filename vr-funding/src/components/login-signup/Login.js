@@ -1,37 +1,129 @@
-import React from "react";
-import { Link } from 'react-router-dom'
+import React, { useState, useEffect } from "react";
+import { useHistory, Link } from "react-router-dom";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import * as yup from "yup";
+import loginFormSchema from "./validation/loginFormSchema";
+import axios from "axios";
 
-export default function Login() {
-    const onSubmitHandler = e => {
-        axiosWithAuth()
-        .post(`URL`, )
-    }
+const initialVal = {
+	username: "",
+	password: "",
+};
 
-  return <div>
-      <form>
-          <h1>Login</h1>
-          
-          <label htmlFor="username">
-              Username&nbsp;
-              <input name="username" type="text"/>
-          </label>
+const initialErr = {
+	username: "",
+	password: "",
+};
 
-          <label htmlFor="password">
-              Password&nbsp;
-              <input name="password" type="password"/>
-          </label>
+const initialDisabled = true;
 
-          <div>
-              <button>Login</button>
-          </div>
+const Login = props => {
+	const [disabled, setDisabled] = useState(initialDisabled);
+	const [formValues, setFormValues] = useState(initialVal);
+	const [formErrors, setFormErrors] = useState(initialErr);
 
-          <div className="errors">
-              <div></div>
-              <div></div>
-          </div>
-      </form>
+	let history = useHistory();
 
-      <div>Don't have an account yet?<Link to="/Signup">Sign Up</Link> </div>
-  </div>;
-}
+	const loginUser = newUser => {
+		axios
+			.post("https://regres.in/api/users", newUser)
+			.then(response => {
+				console.log(response);
+			})
+			.catch(err => {
+				console.log(err);
+			})
+			.finally(() => {
+				setFormValues(initialVal);
+			});
+	};
+
+	const onInputChange = e => {
+		const { name, value } = e.target;
+
+		yup
+			.reach(loginFormSchema, name)
+			.validate(value)
+			.then(valid => {
+				setFormErrors({
+					...formErrors,
+					[name]: "",
+				});
+			})
+			.catch(err => {
+				setFormErrors({
+					...formErrors,
+					[name]: err.errors[0],
+				});
+			});
+		setFormValues({
+			...formValues,
+			[name]: value,
+		});
+	};
+
+	const onSubmitHandler = e => {
+		e.preventDefault();
+		axiosWithAuth()
+			.post(
+				`https://virtual-reality-fundraising.herokuapp.com/api/login`,
+				loginUser
+			)
+			.then(res => {
+				console.log(res);
+				// localStorage.setItem("token", res.data.payload);
+			})
+			.catch(err => {
+				console.log(err);
+			});
+
+		const user = {
+			username: formValues.username.trim(),
+			password: formValues.password.trim(),
+		};
+		loginUser(user);
+	};
+
+	useEffect(() => {
+		loginFormSchema.isValid(formValues).then(valid => {
+			//if values meet validation, enable the login button
+			setDisabled(!valid);
+		});
+	}, [formValues]);
+
+	return (
+		<form onSubmit={onSubmitHandler}>
+			<h1>Login</h1>
+
+			{/* <label htmlFor="username"> */}
+				{/* Username&nbsp; */}
+				<input
+				placeholder="Username"
+					name="username"
+					type="text"
+					onChange={onInputChange}
+					value={formValues.username}
+				/>
+			{/* </label> */}
+
+			{/* <label htmlFor="password"> */}
+				{/* Password&nbsp; */}
+				<input
+				placeholder="Password"
+					name="password"
+					type="password"
+					onChange={onInputChange}
+					value={formValues.password}
+				/>
+			{/* </label> */}
+				<button className="button" type="submit" disabled={disabled}>Login</button>
+			<div className="errors">
+				<div>{formErrors.username}</div>
+				<div>{formErrors.password}</div>
+			</div>
+			<p>Don't have an account yet?</p><Link className="button" to="/Signup">Sign Up</Link>{" "}
+		</form>
+	);
+};
+
+export default Login;

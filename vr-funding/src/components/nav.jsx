@@ -1,15 +1,15 @@
 import React from "react";
 import logo from "./styles/images/VRFP_logo.png";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 const Nav = props => {
     return (
-        <nav>
-            <img className="logo" src={logo} />
-            <div>
-                <Link to="./Login">Login</Link>
-                <Link to="./Signup">Sign Up</Link>
-            </div>
+        <nav id="navBar">
+            <img id="logo" src={logo} />
+                <a href="index.html"> Home</a>
+                <a href="about.html"> About Us </a>
+                <a href="/"> Login </a>
+                <a href="/signup"> Signup </a>
         </nav>
     )
 }
