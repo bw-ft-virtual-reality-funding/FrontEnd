@@ -148,7 +148,7 @@ export default function Signup() {
         <input className="fundraiser" type="radio" name="role" onChange={onInputChange} value="fundraiser" checked={formValues.role === "fundraiser"}/>
         <input className="funder" type="radio" name="role" onChange={onInputChange} value="funder" checked={formValues.role === "funder"} />
       </div>
-      <button className="button" type="submit" disabled={disabled}>Sign Up Now</button>
+      <button className="button" type="submit" /*disabled={disabled}*/>Sign Up Now</button>
       <div className="errors">
         <div></div>
         <div></div>
