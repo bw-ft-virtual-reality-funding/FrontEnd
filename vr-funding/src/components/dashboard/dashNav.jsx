@@ -10,7 +10,7 @@ const DashNav = props => {
     useEffect(() => {
         const body = document.querySelector("body");
 
-        if(!darkMode) {
+        if(darkMode) {
             body.classList.add("dark");
         } else {
             body.classList.remove("dark");
@@ -28,7 +28,7 @@ const DashNav = props => {
         <nav id="dashNav">
             <img id="logo" src={logo} />
             <a className="signout" onClick={logOut}>Sign Out</a>
-            <input type="checkbox" name="darkMode" id="darkMode" onClick={toggle} />
+            <input type="checkbox" name="darkMode" id="darkMode" onClick={toggle} checked={darkMode} />
         </nav>
     )
 }

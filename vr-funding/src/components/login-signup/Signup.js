@@ -36,7 +36,7 @@ export default function Signup() {
 
   const postNewUser = newUser => {
     axiosWithAuth()
-      .post(`https://virtual-reality-fundraising.herokuapp.com/api/register`, formValues)
+      .post(`https://virtual-reality-fundraising.herokuapp.com/api/users/register`, formValues)
       .then(res => {
         console.log(res);
         // localStorage.setItem("token", res.data.payload);
