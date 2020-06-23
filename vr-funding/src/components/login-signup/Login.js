@@ -17,83 +17,82 @@ const initialErr = {
 
 const initialDisabled = true;
 
-const [disabled, setDisabled] = useState(initialDisabled);
-const [formValues, setFormValues] = useState(initialVal);
-const [formErrors, setFormErrors] = useState(initialErr);
+const Login = props => {
+	const [disabled, setDisabled] = useState(initialDisabled);
+	const [formValues, setFormValues] = useState(initialVal);
+	const [formErrors, setFormErrors] = useState(initialErr);
 
-let history = useHistory();
+	let history = useHistory();
 
-const onSubmitHandler = e => {
-	axiosWithAuth().post(`URL`);
-};
-
-const loginUser = newUser => {
-	axios
-		.post("https://regres.in/api/users", newUser)
-		.then(response => {
-			console.log(response);
-		})
-		.catch(err => {
-			console.log(err);
-		})
-		.finally(() => {
-			setFormValues(initialVal);
-		});
-};
-
-const onInputChange = e => {
-	const { name, value } = e.target;
-
-	yup
-		.reach(loginFormSchema, name)
-		.validate(value)
-		.then(valid => {
-			setFormErrors({
-				...formErrors,
-				[name]: "",
+	const loginUser = newUser => {
+		axios
+			.post("https://regres.in/api/users", newUser)
+			.then(response => {
+				console.log(response);
+			})
+			.catch(err => {
+				console.log(err);
+			})
+			.finally(() => {
+				setFormValues(initialVal);
 			});
-		})
-		.catch(err => {
-			setFormErrors({
-				...formErrors,
-				[name]: err.errors[0],
-			});
-		});
-	setFormValues({
-		...formValues,
-		[name]: value,
-	});
-};
-
-const onSubmit = e => {
-	e.preventDefault();
-	axiosWithAuth()
-		.post(`URL`, loginUser)
-		.then(res => {
-			console.log(res);
-			// const ["token", res.data.payload] = useLocalStorage;
-		})
-		.catch(err => {
-			console.log(err);
-		});
-
-	const user = {
-		username: formValues.username.trim(),
-		password: formValues.password.trim(),
 	};
-	loginUser(user);
-};
 
-useEffect(() => {
-	loginFormSchema.isValid(formValues).then(valid => {
-		//if values meet validation, enable the login button
-		setDisabled(!valid);
-	});
-}, [formValues]);
+	const onInputChange = e => {
+		const { name, value } = e.target;
 
-return (
-	<div>
-		<form onSubmit={onSubmit}>
+		yup
+			.reach(loginFormSchema, name)
+			.validate(value)
+			.then(valid => {
+				setFormErrors({
+					...formErrors,
+					[name]: "",
+				});
+			})
+			.catch(err => {
+				setFormErrors({
+					...formErrors,
+					[name]: err.errors[0],
+				});
+			});
+		setFormValues({
+			...formValues,
+			[name]: value,
+		});
+	};
+
+	const onSubmitHandler = e => {
+		e.preventDefault();
+		axiosWithAuth()
+			.post(
+				`https://virtual-reality-fundraising.herokuapp.com/api/login`,
+				loginUser
+			)
+			.then(res => {
+				console.log(res);
+				// localStorage.setItem("token", res.data.payload);
+			})
+			.catch(err => {
+				console.log(err);
+			});
+
+		const user = {
+			username: formValues.username.trim(),
+			password: formValues.password.trim(),
+		};
+		loginUser(user);
+	};
+
+	useEffect(() => {
+		loginFormSchema.isValid(formValues).then(valid => {
+			//if values meet validation, enable the login button
+			setDisabled(!valid);
+		});
+	}, [formValues]);
+
+	return (
+		<form onSubmit={onSubmitHandler}>
 			<h1>Login</h1>
 
 			<label htmlFor="username">
@@ -115,19 +114,14 @@ return (
 					value={formValues.password}
 				/>
 			</label>
-
-			<div>
 				<button disabled={disabled}>Login</button>
-			</div>
-
 			<div className="errors">
 				<div>{formErrors.username}</div>
 				<div>{formErrors.password}</div>
 			</div>
+			<p>Don't have an account yet?</p><Link to="/Signup">Sign Up</Link>{" "}
 		</form>
+	);
+};
 
-		<div>
-			Don't have an account yet?<Link to="/Signup">Sign Up</Link>{" "}
-		</div>
-	</div>
-);
+export default Login;

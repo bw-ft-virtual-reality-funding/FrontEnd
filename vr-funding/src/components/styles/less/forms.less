@@ -1,0 +1,69 @@
+form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	margin: 10px;
+
+	label {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	input {
+		outline: none;
+		margin: 5px;
+		height: 20px;
+		padding: 5px;
+		width: 25%;
+	}
+
+	p {
+		margin: 5px;
+	}
+
+	h1 {
+		margin: 5px;
+	}
+
+	.role {
+		display: flex;
+		width: 100%;
+		justify-content: center;
+
+		input[type="radio"] {
+			width: 50px;
+			-webkit-appearance: none;
+			background-color: navy;
+			transition: 0.4s ease;
+			cursor: pointer;
+			height: 40px;
+			width: 180px;
+            border-radius: 40px;
+            color: rgb(80, 107, 179);
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+		}
+
+		input[type="radio"]:checked {
+            background-color: rgb(85, 169, 248);
+            color: white;
+		}
+
+		.fundraiser::before {
+			content: "Fundraiser";
+			font-size: 1.3rem;
+			text-align: center;
+		}
+
+		.funder::before {
+			content: "Funder";
+			font-size: 1.3rem;
+			text-align: center;
+		}
+	}
+}
