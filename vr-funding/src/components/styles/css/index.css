@@ -303,3 +303,9 @@ form .role .funder::before {
 form .errors {
   color: red;
 }
+form .inputs input {
+  width: 100%;
+}
+form .inputs input[name='description'] {
+  height: 8rem;
+}

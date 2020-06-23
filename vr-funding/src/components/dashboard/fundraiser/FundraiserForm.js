@@ -104,7 +104,7 @@ export default function FundraiserForm(){
         <div className='container'>
             <form className='form container' onSubmit={onSubmit}>
 
-                <div className='form-gorup inputs'>
+                <div className='inputs'>
                     <h4>Fundraiser Details</h4>
 
                     {/* <label>Fundraiser Name&nbsp; */}
@@ -140,7 +140,7 @@ export default function FundraiserForm(){
                 </div>
 
                 <div className='form-group submit'>
-                    <button disabled={disabled}>Submit</button>
+                    <button className="button" disabled={disabled}>Submit</button>
                 
 
                     <div className='errors'>
