@@ -60,7 +60,11 @@ form {
             color: rgb(80, 107, 179);
             font-weight: bold;
             display: flex;
-            justify-content: center;
+			justify-content: center;
+			
+			&:hover {
+				color: white;
+			}
 		}
 
 		input[type="radio"]:checked {
@@ -80,6 +84,15 @@ form {
 			font-size: 1.3rem;
 			text-align: center;
 		}
+	}
+
+	select {
+		background-color: navy;
+		color: white;
+		border: none;
+		border-radius: 20px;
+		padding: 5px 10px;
+		margin: 5px;
 	}
 
 	.errors {
