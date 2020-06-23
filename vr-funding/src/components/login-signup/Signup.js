@@ -94,49 +94,53 @@ export default function Signup() {
       <h1>Sign Up</h1>
       <h3>Create your account.</h3>
 
-      <label htmlFor="firstname">
-        First Name&nbsp;
+      {/* <label htmlFor="firstname">
+        First Name&nbsp; */}
 				<input
+        placeholder="First Name"
           name="firstname"
           type="text"
           onChange={onInputChange}
           value={formValues.firstname}
         />
-      </label>
+      {/* </label> */}
       <div>{formErrors.firstname}</div>
 
-      <label htmlFor="lastname">
-        Last Name
+      {/* <label htmlFor="lastname">
+        Last Name */}
 				<input
+        placeholder="Last Name"
           name="lastname"
           type="text"
           onChange={onInputChange}
           value={formValues.lastname}
         />
-      </label>
+      {/* </label> */}
       <div>{formErrors.lastname}</div>
 
-      <label htmlFor="email">
-        Email
+      {/* <label htmlFor="email">
+        Email */}
 				<input
+        placeholder="Email"
           name="email"
           type="email"
           onChange={onInputChange}
           value={formValues.email}
         />
-      </label>
+      {/* </label> */}
       <div>{formErrors.email}</div>
       <div>{formErrors.username}</div>
 
-      <label htmlFor="password">
-        Password
+      {/* <label htmlFor="password">
+        Password */}
 				<input
+        placeholder="Create Password"
           name="password"
           type="password"
           onChange={onInputChange}
           value={formValues.password}
         />
-      </label>
+      {/* </label> */}
       <div>{formErrors.password}</div>
       <button className="button" type="submit" disabled={disabled}>Sign Up Now</button>
 

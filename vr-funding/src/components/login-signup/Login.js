@@ -95,31 +95,33 @@ const Login = props => {
 		<form onSubmit={onSubmitHandler}>
 			<h1>Login</h1>
 
-			<label htmlFor="username">
-				Username&nbsp;
+			{/* <label htmlFor="username"> */}
+				{/* Username&nbsp; */}
 				<input
+				placeholder="Username"
 					name="username"
 					type="text"
 					onChange={onInputChange}
 					value={formValues.username}
 				/>
-			</label>
+			{/* </label> */}
 
-			<label htmlFor="password">
-				Password&nbsp;
+			{/* <label htmlFor="password"> */}
+				{/* Password&nbsp; */}
 				<input
+				placeholder="Password"
 					name="password"
 					type="password"
 					onChange={onInputChange}
 					value={formValues.password}
 				/>
-			</label>
-				<button disabled={disabled}>Login</button>
+			{/* </label> */}
+				<button className="button" type="submit" disabled={disabled}>Login</button>
 			<div className="errors">
 				<div>{formErrors.username}</div>
 				<div>{formErrors.password}</div>
 			</div>
-			<p>Don't have an account yet?</p><Link to="/Signup">Sign Up</Link>{" "}
+			<p>Don't have an account yet?</p><Link className="button" to="/Signup">Sign Up</Link>{" "}
 		</form>
 	);
 };

@@ -3,8 +3,9 @@ form {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	width: 100%;
-	margin: 10px;
+	width: 99%;
+	// margin: 10px 0;
+	height: 87.6vh;
 
 	label {
 		width: 100%;
@@ -19,6 +20,17 @@ form {
 		height: 20px;
 		padding: 5px;
 		width: 25%;
+		border: 0.5px solid gray;
+	}
+
+	input::placeholder {
+		font-weight: bold;
+		color: rgb(160, 158, 158);
+		letter-spacing: 2px;;
+	}
+
+	input:focus {
+		border: 0.5px solid navy;
 	}
 
 	p {
@@ -51,7 +63,8 @@ form {
 
 		input[type="radio"]:checked {
             background-color: rgb(85, 169, 248);
-            color: white;
+			color: white;
+			border: solid white 0.5px;
 		}
 
 		.fundraiser::before {
@@ -65,5 +78,9 @@ form {
 			font-size: 1.3rem;
 			text-align: center;
 		}
+	}
+
+	.errors {
+		color: red;
 	}
 }

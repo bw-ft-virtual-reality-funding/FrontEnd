@@ -146,6 +146,10 @@ table {
 body {
   font-family: 'Ubuntu', sans-serif;
 }
+.App {
+  background: #0053df;
+  background: linear-gradient(21deg, #0053df 0%, #b7ddff 57%, #ffffff 100%);
+}
 h1,
 h2,
 h3,
@@ -161,6 +165,7 @@ h6 {
   border-radius: 20px;
   text-decoration: none;
   font-weight: bold;
+  font-size: 1rem;
   width: 150px;
   text-align: center;
   letter-spacing: 1px;
@@ -174,9 +179,9 @@ nav #logo {
   height: 70px;
 }
 #navBar {
-  background-color: #000035;
+  background-color: #121242;
   width: 100%;
-  padding: 10px;
+  padding: 10px 0;
 }
 #navBar a {
   text-decoration: none;
@@ -190,8 +195,8 @@ form {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  margin: 10px;
+  width: 99%;
+  height: 87.6vh;
 }
 form label {
   width: 100%;
@@ -205,6 +210,15 @@ form input {
   height: 20px;
   padding: 5px;
   width: 25%;
+  border: 0.5px solid gray;
+}
+form input::placeholder {
+  font-weight: bold;
+  color: #a09e9e;
+  letter-spacing: 2px;
+}
+form input:focus {
+  border: 0.5px solid navy;
 }
 form p {
   margin: 5px;
@@ -234,6 +248,7 @@ form .role input[type="radio"] {
 form .role input[type="radio"]:checked {
   background-color: #55a9f8;
   color: white;
+  border: solid white 0.5px;
 }
 form .role .fundraiser::before {
   content: "Fundraiser";
@@ -244,4 +259,7 @@ form .role .funder::before {
   content: "Funder";
   font-size: 1.3rem;
   text-align: center;
+}
+form .errors {
+  color: red;
 }
