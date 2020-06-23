@@ -22,6 +22,7 @@ const initialErr = {
 };
 
 const initialDisabled = true;
+const initialUser = []
 
 export default function Signup() {
   //determines button clickability
@@ -30,8 +31,21 @@ export default function Signup() {
   const [formValues, setFormValues] = useState(initialVal);
   //holds the errors which update based on validation
   const [formErrors, setFormErrors] = useState(initialErr);
+  const [user, setUser] = useState(initialUser)
 
   let history = useHistory();
+
+  const getUser = () => {
+    axios.get('')
+      .then((response) => {
+        console.log(response)
+        setUser(response.data)
+      })
+      .catch(err =>{
+        console.log(err)
+      })
+
+  }
 
 
   const postNewUser = newUser => {
@@ -74,8 +88,6 @@ export default function Signup() {
 
     const newUser = {
       name: `${formValues.firstname.trim()} ${formValues.lastname.trim()}`,
-      // firstname: formValues.firstname.trim(),
-      // lastname: formValues.lastname.trim(),
       username: formValues.username.trim(),
       password: formValues.password.trim(),
       role: formValues.role
@@ -83,9 +95,12 @@ export default function Signup() {
     postNewUser(newUser);
   };
 
+  useEffect(()=>{
+    getUser()
+  }, [])
+
   useEffect(() => {
     signUpFormSchema.isValid(formValues).then(valid => {
-
       //if form values meet validation enable the button
       setDisabled(!valid);
     });
