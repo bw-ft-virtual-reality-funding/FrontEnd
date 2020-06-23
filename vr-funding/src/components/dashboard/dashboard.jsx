@@ -4,10 +4,12 @@ import PrivateRoute from "../utils/PrivateRoute";
 import FundraiserForm from "./fundraiser/FundraiserForm";
 import { VRContext } from "../context/VRContext";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import {useTimeMessage} from "../hooks/useTimeMessage";
 import DashNav from "./dashNav";
 
 const Dashboard = props => {
     const [userDetails, setUserDetails] = useContext(VRContext);
+    const [greet] = useTimeMessage("Good Morning", "Good Afternoon");
 
     // useEffect(() => {
     //     const loggedID = localStorage.getItem("id");
@@ -29,7 +31,7 @@ const Dashboard = props => {
             <Router>
                 <PrivateRoute path="/dashboard/profile">
                     <div className="welcome">
-                        <h2>{`Hello, ${userDetails.name}`}</h2>
+                        <h2>{`${greet}, ${userDetails.name}`}</h2>
                         <button className="button">Settings</button>
                     </div>
                 </PrivateRoute>
