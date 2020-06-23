@@ -322,6 +322,9 @@ form select {
 form .errors {
   color: red;
 }
+form .inputs input {
+  width: 100%;
+}
 .welcome {
   height: 90vh;
   display: flex;
