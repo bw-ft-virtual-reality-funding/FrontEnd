@@ -73,9 +73,9 @@ export default function Signup() {
     e.preventDefault();
 
     const newUser = {
-      firstname: formValues.firstname.trim(),
-      lastname: formValues.lastname.trim(),
+      name: `${formValues.firstname.trim()} ${formValues.lastname.trim()}`,
       email: formValues.email.trim(),
+      role: "",
       username: formValues.username.trim(),
       password: formValues.password.trim(),
     };
@@ -104,7 +104,7 @@ export default function Signup() {
           value={formValues.firstname}
         />
       {/* </label> */}
-      <div>{formErrors.firstname}</div>
+      <div className="errors">{formErrors.firstname}</div>
 
       {/* <label htmlFor="lastname">
         Last Name */}
@@ -116,7 +116,7 @@ export default function Signup() {
           value={formValues.lastname}
         />
       {/* </label> */}
-      <div>{formErrors.lastname}</div>
+      <div className="errors">{formErrors.lastname}</div>
 
       {/* <label htmlFor="email">
         Email */}
@@ -128,8 +128,8 @@ export default function Signup() {
           value={formValues.email}
         />
       {/* </label> */}
-      <div>{formErrors.email}</div>
-      <div>{formErrors.username}</div>
+      <div className="errors">{formErrors.email}</div>
+      <div className="errors">{formErrors.username}</div>
 
       {/* <label htmlFor="password">
         Password */}
@@ -141,15 +141,14 @@ export default function Signup() {
           value={formValues.password}
         />
       {/* </label> */}
-      <div>{formErrors.password}</div>
-      <button className="button" type="submit" disabled={disabled}>Sign Up Now</button>
+      <div className="errors">{formErrors.password}</div>
 
       <p>Are you a :</p>
       <div className="role">
         <input className="fundraiser" type="radio" name="role" />
         <input className="funder" type="radio" name="role" />
       </div>
-
+      <button className="button" type="submit" disabled={disabled}>Sign Up Now</button>
       <div className="errors">
         <div></div>
         <div></div>
