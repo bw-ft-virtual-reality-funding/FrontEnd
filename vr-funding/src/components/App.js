@@ -7,6 +7,7 @@ import Login from "./login-signup/Login";
 import Signup from "./login-signup/Signup";
 import { VRProvider } from "./context/VRContext";
 import FundraiserForm from "./dashboard/fundraiser/FundraiserForm"
+import Dashboard from "./dashboard/dashboard";
 
 function App() {
   return (
@@ -24,7 +25,7 @@ function App() {
 
           {/*  DASHBOARD  */}
           <PrivateRoute path="/dashboard">
-            <FundraiserForm/>
+            <Dashboard />
           </PrivateRoute>
         </Router>
       </div>

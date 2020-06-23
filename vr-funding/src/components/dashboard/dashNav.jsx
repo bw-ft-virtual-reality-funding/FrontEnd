@@ -7,3 +7,5 @@ const DashNav = props => {
         <nav></nav>
     )
 }
+
+export default DashNav;
