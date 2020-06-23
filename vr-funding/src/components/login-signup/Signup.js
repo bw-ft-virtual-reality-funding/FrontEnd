@@ -49,10 +49,15 @@ export default function Signup() {
 
 
   const postNewUser = newUser => {
-    axiosWithAuth()
-      .post(`https://virtual-reality-fundraising.herokuapp.com/api/users/register`, formValues)
+    axios
+      .post(`https://virtual-reality-fundraising.herokuapp.com/api/users/register`, newUser)
       .then(res => {
+<<<<<<< HEAD
         localStorage.setItem("token", res.data.payload);
+=======
+        console.log(res);
+        useHistory.push("/");
+>>>>>>> 8774a84bc7fbff181c57ccc91a995ae2bb4c48bc
       })
       .catch(err => {
         console.log(err);

@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import * as yup from "yup";
 import loginFormSchema from "./validation/loginFormSchema";
 import axios from "axios";
+import { VRContext } from "../context/VRContext";
 
 const initialVal = {
 	username: "",
@@ -19,6 +20,7 @@ const initialDisabled = true;
 
 
 const Login = props => {
+	const [userDetails, setUserDetails] = useContext(VRContext);
 	const [disabled, setDisabled] = useState(initialDisabled);
 	const [formValues, setFormValues] = useState(initialVal);
 	const [formErrors, setFormErrors] = useState(initialErr);
@@ -79,7 +81,8 @@ const Login = props => {
 				console.log(res);
 				setFormValues(initialVal);
 				localStorage.setItem("token", res.data.token);
-				// localStorage.setItem("id", res.data.id);
+				localStorage.setItem("id", res.data.user.id);
+				setUserDetails(res.data.user);
 				history.push("/dashboard/profile")
 			})
 			.catch(err => {
