@@ -11,6 +11,7 @@ const initialVal = {
   email: "",
   username: "",
   password: "",
+  role: "",
 };
 
 const initialErr = {
@@ -19,6 +20,7 @@ const initialErr = {
   email: "",
   username: "",
   password: "",
+  role:"",
 };
 
 const initialDisabled = true;
@@ -79,6 +81,7 @@ export default function Signup() {
       email: formValues.email.trim(),
       username: formValues.username.trim(),
       password: formValues.password.trim(),
+      role: formValues.role
     };
     postNewUser(newUser);
   };
@@ -148,8 +151,8 @@ export default function Signup() {
 
       <p>Are you a :</p>
       <div className="role">
-        <input className="fundraiser" type="radio" name="role" />
-        <input className="funder" type="radio" name="role" />
+        <input className="fundraiser" type="radio" name="role" onChange={onInputChange} value="fundraiser" checked={formValues.role === "fundraiser"}/>
+        <input className="funder" type="radio" name="role" onChange={onInputChange} value="funder" checked={formValues.role === "funder"} />
       </div>
 
       <div className="errors">
