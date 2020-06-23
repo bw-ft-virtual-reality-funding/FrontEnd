@@ -325,6 +325,33 @@ form .errors {
 form .inputs input {
   width: 100%;
 }
+.projects {
+  display: flex;
+  text-align: center;
+  flex-wrap: wrap;
+}
+.projects .container {
+  width: 100%;
+  border: 1px solid #d2d2d2;
+  border-radius: 1rem;
+  box-shadow: 0 0.1rem 1rem -0.2rem navy;
+  margin: 1.6rem 0.8rem;
+  padding: 1.6rem;
+  background-color: rgba(207, 204, 204, 0.24);
+}
+.projects .container h2 {
+  margin: 1rem;
+}
+.projects .container .link {
+  margin: 0.5rem;
+  color: #0ba00b;
+}
+.projects .container .link:hover {
+  color: #0ec60e;
+}
+.projects .container p {
+  margin: 1rem;
+}
 .welcome {
   height: 90vh;
   display: flex;

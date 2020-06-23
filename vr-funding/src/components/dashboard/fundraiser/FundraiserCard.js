@@ -11,7 +11,8 @@ export default function FundraiserCard(props) {
     return (
         <div className='fundraiser container'>
             <h2>{details.title}</h2>
-            <a href={details.img_url} target="_blank">Fundraiser Link</a>
+            {/* <img src={details.img_url}/> */}
+            <a className='link' href={details.img_url} target="_blank">Fundraiser Link</a>
             <p>{details.description}</p>
         </div>
     )
