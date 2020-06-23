@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import {VRContext} from "../context/VRContext";
+import { VRContext } from "../context/VRContext";
 import logo from "../styles/images/VRFP_logo.png";
 import { useDarkMode } from "../hooks/useDarkMode";
 
@@ -10,7 +10,7 @@ const DashNav = props => {
     useEffect(() => {
         const body = document.querySelector("body");
 
-        if(darkMode) {
+        if (darkMode) {
             body.classList.add("dark");
         } else {
             body.classList.remove("dark");
@@ -27,6 +27,10 @@ const DashNav = props => {
     return (
         <nav id="dashNav">
             <img id="logo" src={logo} />
+            {userDetails.role === "fundraiser"
+                ? <a href="/dashboard/add">Add Project</a>
+                : <a href="/dashboard/view">Fund Project</a>
+            }
             <a className="signout" onClick={logOut}>Sign Out</a>
             <input type="checkbox" name="darkMode" id="darkMode" onClick={toggle} checked={darkMode} />
         </nav>
