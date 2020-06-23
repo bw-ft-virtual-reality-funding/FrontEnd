@@ -38,6 +38,8 @@ const EditUser = props => {
             .delete(`https://virtual-reality-fundraising.herokuapp.com/api/users/${loggedID}`)
             .then(res => {
                 console.log(res);
+                localStorage.removeItem("token")
+                localStorage.removeItem("id");
                 window.location.assign("/");
             })
             .catch(err => {
