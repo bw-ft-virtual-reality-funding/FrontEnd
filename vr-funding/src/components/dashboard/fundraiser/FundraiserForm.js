@@ -139,10 +139,9 @@ export default function FundraiserForm(){
                     {/* </label> */}
                 </div>
 
-                <div className='form-group submit'>
-                    <button className="button" disabled={disabled}>Submit</button>
+                <button className="button" disabled={disabled}>Submit</button>
                 
-
+                <div className='form-group submit'>
                     <div className='errors'>
                         <div>{formErrors.title}</div>
                         <div>{formErrors.imgUrl}</div>
