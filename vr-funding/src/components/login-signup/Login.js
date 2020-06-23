@@ -11,7 +11,7 @@ export default function Login() {
 			.post(`URL`, loginUser)
 			.then(res => {
 				console.log(res);
-				// useLocalStorage("token", res.data.payload);
+				// const ["token", res.data.payload] = useLocalStorage;
 			})
 			.catch(err => {
 				console.log(err);
