@@ -11,10 +11,6 @@ const signUpFormSchema = Yup.object().shape({
     .min(2, "Last name needs to be two or more characters")
     .max(20, "Last name can not be longer than 20 characters")
     .required("Please enter your last name"),
-  email: Yup.string()
-    .email("Please enter a valid email address")
-    .trim()
-    .required("An email address is required"),
   username: Yup.string()
     .trim()
     .min(4, "Current username is too short")

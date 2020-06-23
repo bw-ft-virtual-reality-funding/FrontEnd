@@ -72,13 +72,13 @@ const Login = props => {
 
 		axiosWithAuth()
 			.post(
-				`https://virtual-reality-fundraising.herokuapp.com/api/login`,
+				`https://virtual-reality-fundraising.herokuapp.com/api/users/login`,
 				user
 			)
 			.then(res => {
 				console.log(res);
 				setFormValues(initialVal);
-				// localStorage.setItem("token", res.data.payload);
+				localStorage.setItem("token", res.data.token);
 				// localStorage.setItem("id", res.data.id);
 				history.push("/dashboard/profile")
 			})
