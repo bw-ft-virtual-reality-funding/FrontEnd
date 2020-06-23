@@ -9,6 +9,8 @@ import { useTimeMessage } from "../hooks/useTimeMessage";
 import DashNav from "./dashNav";
 import ProjectView from "./funder/ProjectsView";
 import EditUser from "./editUser";
+import  FindFriend from "./findFriend";
+
 
 const Dashboard = props => {
     const [userDetails, setUserDetails] = useContext(VRContext);
@@ -47,6 +49,9 @@ const Dashboard = props => {
                 </PrivateRoute>
                 <PrivateRoute path="/dashboard/edit">
                     <EditUser />
+                </PrivateRoute>
+                <PrivateRoute path="/dashboard/findFriend">
+                   <FindFriend/>
                 </PrivateRoute>
             </Router>
         </div>

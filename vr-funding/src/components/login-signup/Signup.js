@@ -35,29 +35,14 @@ export default function Signup() {
 
   let history = useHistory();
 
-  // const getUser = () => {
-  //   axios.get('')
-  //     .then((response) => {
-  //       console.log(response)
-  //       setUser(response.data)
-  //     })
-  //     .catch(err =>{
-  //       console.log(err)
-  //     })
-
-  // }
-
+  
 
   const postNewUser = newUser => {
     axios
       .post(`https://virtual-reality-fundraising.herokuapp.com/api/users/register`, newUser)
       .then(res => {
-<<<<<<< HEAD
-        localStorage.setItem("token", res.data.payload);
-=======
         console.log(res);
         useHistory.push("/");
->>>>>>> 8774a84bc7fbff181c57ccc91a995ae2bb4c48bc
       })
       .catch(err => {
         console.log(err);
@@ -100,10 +85,7 @@ export default function Signup() {
     postNewUser(newUser);
   };
 
-  // useEffect(()=>{
-  //   getUser()
-  // }, [])
-
+  
   useEffect(() => {
     signUpFormSchema.isValid(formValues).then(valid => {
       //if form values meet validation enable the button
