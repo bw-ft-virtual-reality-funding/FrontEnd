@@ -5,7 +5,7 @@ export default function FundraiserCard(props) {
     const {details} = props
 
     if (!details) {
-        return <h3>Working fetching your fundraisers details...</h3>
+        return <h3>Working on fetching your fundraiser...</h3>
       }
 
     return (
