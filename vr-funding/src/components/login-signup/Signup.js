@@ -35,17 +35,17 @@ export default function Signup() {
 
   let history = useHistory();
 
-  const getUser = () => {
-    axios.get('')
-      .then((response) => {
-        console.log(response)
-        setUser(response.data)
-      })
-      .catch(err =>{
-        console.log(err)
-      })
+  // const getUser = () => {
+  //   axios.get('')
+  //     .then((response) => {
+  //       console.log(response)
+  //       setUser(response.data)
+  //     })
+  //     .catch(err =>{
+  //       console.log(err)
+  //     })
 
-  }
+  // }
 
 
   const postNewUser = newUser => {
@@ -95,9 +95,9 @@ export default function Signup() {
     postNewUser(newUser);
   };
 
-  useEffect(()=>{
-    getUser()
-  }, [])
+  // useEffect(()=>{
+  //   getUser()
+  // }, [])
 
   useEffect(() => {
     signUpFormSchema.isValid(formValues).then(valid => {
