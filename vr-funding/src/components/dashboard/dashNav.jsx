@@ -27,12 +27,13 @@ const DashNav = props => {
     return (
         <nav id="dashNav">
             <img id="logo" src={logo} />
+            <input type="checkbox" name="darkMode" id="darkMode" onClick={toggle} checked={darkMode} />
             {userDetails.role === "fundraiser"
                 ? <a href="/dashboard/add">Add Project</a>
                 : <a href="/dashboard/view">Fund Project</a>
             }
+            <a href="/dashboard/profile">{userDetails.username}</a>
             <a className="signout" onClick={logOut}>Sign Out</a>
-            <input type="checkbox" name="darkMode" id="darkMode" onClick={toggle} checked={darkMode} />
         </nav>
     )
 }

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 import PrivateRoute from "../utils/PrivateRoute";
 import FundraiserForm from "./fundraiser/FundraiserForm";
 import { VRContext } from "../context/VRContext";
@@ -8,6 +8,7 @@ import axios from "axios";
 import { useTimeMessage } from "../hooks/useTimeMessage";
 import DashNav from "./dashNav";
 import ProjectView from "./funder/ProjectsView";
+import EditUser from "./editUser";
 
 const Dashboard = props => {
     const [userDetails, setUserDetails] = useContext(VRContext);
@@ -35,8 +36,7 @@ const Dashboard = props => {
                     <div className="welcome">
                         <h2>{`${greet}, ${userDetails.name}`}</h2>
                         <p>{userDetails.role}</p>
-
-                        <button className="button">Settings</button>
+                        <Link className="button" to="/dashboard/edit" >Settings</Link>
                     </div>
                 </PrivateRoute>
                 <PrivateRoute path="/dashboard/add">
@@ -44,6 +44,9 @@ const Dashboard = props => {
                 </PrivateRoute>
                 <PrivateRoute path="/dashboard/view">
                     <ProjectView />
+                </PrivateRoute>
+                <PrivateRoute path="/dashboard/edit">
+                    <EditUser />
                 </PrivateRoute>
             </Router>
         </div>
