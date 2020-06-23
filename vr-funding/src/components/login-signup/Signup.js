@@ -38,8 +38,7 @@ export default function Signup() {
     axiosWithAuth()
       .post(`https://virtual-reality-fundraising.herokuapp.com/api/register`, formValues)
       .then(res => {
-        console.log(res);
-        // localStorage.setItem("token", res.data.payload);
+        localStorage.setItem("token", res.data.payload);
       })
       .catch(err => {
         console.log(err);
@@ -75,6 +74,8 @@ export default function Signup() {
 
     const newUser = {
       name: `${formValues.firstname.trim()} ${formValues.lastname.trim()}`,
+      // firstname: formValues.firstname.trim(),
+      // lastname: formValues.lastname.trim(),
       username: formValues.username.trim(),
       password: formValues.password.trim(),
       role: formValues.role
@@ -148,7 +149,9 @@ export default function Signup() {
         <input className="fundraiser" type="radio" name="role" onChange={onInputChange} value="fundraiser" checked={formValues.role === "fundraiser"}/>
         <input className="funder" type="radio" name="role" onChange={onInputChange} value="funder" checked={formValues.role === "funder"} />
       </div>
-      <button className="button" type="submit" /*disabled={disabled}*/>Sign Up Now</button>
+      <div className="errors">{formErrors.role}</div>
+      
+      <button className="button" type="submit" disabled={disabled}>Sign Up Now</button>
       <div className="errors">
         <div></div>
         <div></div>
