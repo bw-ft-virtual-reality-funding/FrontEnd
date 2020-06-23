@@ -18,7 +18,7 @@ const initialFormErrors = {
 
 const initialFundraiser = []
 const initialDisabled = true
-const URL = 'https://virtual-reality-fundraising.herokuapp.com/api/projects' //using until backend api is ready
+const URL = 'https://virtual-reality-fundraising.herokuapp.com/api/projects'
 
 export default function FundraiserForm(){
 
