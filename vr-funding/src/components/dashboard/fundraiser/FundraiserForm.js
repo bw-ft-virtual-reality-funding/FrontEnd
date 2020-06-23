@@ -18,7 +18,7 @@ const initialFormErrors = {
 
 const initialFundraiser = []
 const initialDisabled = true
-const URL = 'https://reqres.in/api/users' //using until backend api is ready
+const URL = 'https://virtual-reality-fundraising.herokuapp.com/api/users' //using until backend api is ready
 
 export default function FundraiserForm(){
 
@@ -44,7 +44,7 @@ export default function FundraiserForm(){
             setFundraiser([...fundraiser, res.data])
         })
         .catch(err => {
-            debugger
+            // debugger
         })
         .finally(() => {
             setFormValues(initialFormValues)
@@ -124,7 +124,7 @@ export default function FundraiserForm(){
                             onChange={onInputChange}
                             name='imgUrl'
                             type='url'
-                            placeholder="Image Url Here: http://www.example.com"                        
+                            placeholder="Image Url Here"                        
                         />
                     {/* </label> */}
 

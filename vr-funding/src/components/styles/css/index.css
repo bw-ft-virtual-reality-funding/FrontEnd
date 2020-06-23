@@ -145,10 +145,13 @@ table {
 }
 body {
   font-family: 'Ubuntu', sans-serif;
-}
-.App {
   background: #0053df;
   background: linear-gradient(21deg, #0053df 0%, #b7ddff 57%, #ffffff 100%);
+}
+.dark {
+  background: none;
+  background-color: #2e2c2c;
+  color: white;
 }
 h1,
 h2,
@@ -159,6 +162,7 @@ h6 {
   font-family: 'Krona One', sans-serif;
 }
 .button {
+  text-transform: uppercase;
   background-color: navy;
   color: white;
   padding: 10px;
@@ -179,17 +183,50 @@ nav {
 nav #logo {
   height: 70px;
 }
-#navBar {
+nav {
   background-color: #121242;
   width: 100%;
   padding: 10px 0;
 }
-#navBar a {
+nav a {
   text-decoration: none;
   color: white;
   font-size: 1.2rem;
   font-family: "Ubuntu", sans-serif;
   margin-right: 5%;
+}
+#dashNav {
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  margin-bottom: 10%;
+}
+#dashNav .signout {
+  color: #f85151;
+}
+#darkMode {
+  -webkit-appearance: none;
+  background-color: #52b1ff;
+  height: 20px;
+  width: 40px;
+  border-radius: 20px;
+  transition: 0.4s ease;
+  z-index: 3;
+}
+#darkMode:checked {
+  background-color: #3030dd;
+}
+#darkMode::before {
+  content: "";
+  position: absolute;
+  background-color: white;
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+}
+#darkMode:checked::before {
+  transform: translateX(25px);
+  transition: 0.4s ease;
 }
 form {
   display: flex;
@@ -197,7 +234,7 @@ form {
   align-items: center;
   justify-content: center;
   width: 99%;
-  height: 87.6vh;
+  height: 90.5vh;
 }
 form label {
   width: 100%;
@@ -212,6 +249,7 @@ form input {
   padding: 5px;
   width: 25%;
   border: 0.5px solid gray;
+  border-radius: 20px;
 }
 form input::placeholder {
   font-weight: bold;
@@ -234,6 +272,7 @@ form .role {
 }
 form .role input[type="radio"] {
   width: 50px;
+  text-transform: uppercase;
   -webkit-appearance: none;
   background-color: navy;
   transition: 0.4s ease;

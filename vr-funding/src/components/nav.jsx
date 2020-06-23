@@ -6,8 +6,8 @@ const Nav = props => {
     return (
         <nav id="navBar">
             <img id="logo" src={logo} />
-                <a href="index.html"> Home</a>
-                <a href="about.html"> About Us </a>
+                <a href="https://vrfundingplatform.netlify.app/"> Home</a>
+                <a href="https://vrfundingplatform.netlify.app/about.html"> About Us </a>
                 <a href="/"> Login </a>
                 <a href="/signup"> Signup </a>
         </nav>
