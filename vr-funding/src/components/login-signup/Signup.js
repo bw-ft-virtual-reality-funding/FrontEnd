@@ -8,7 +8,6 @@ import { axiosWithAuth } from "../utils/axiosWithAuth";
 const initialVal = {
   firstname: "",
   lastname: "",
-  email: "",
   username: "",
   password: "",
   role: "",
@@ -17,7 +16,6 @@ const initialVal = {
 const initialErr = {
   firstname: "",
   lastname: "",
-  email: "",
   username: "",
   password: "",
   role:"",
@@ -38,7 +36,7 @@ export default function Signup() {
 
   const postNewUser = newUser => {
     axiosWithAuth()
-      .post(`https://virtual-reality-fundraising.herokuapp.com/api/register`, formValues)
+      .post(`https://virtual-reality-fundraising.herokuapp.com/api/users/register`, formValues)
       .then(res => {
         console.log(res);
         // localStorage.setItem("token", res.data.payload);
@@ -77,8 +75,6 @@ export default function Signup() {
 
     const newUser = {
       name: `${formValues.firstname.trim()} ${formValues.lastname.trim()}`,
-      email: formValues.email.trim(),
-      role: "",
       username: formValues.username.trim(),
       password: formValues.password.trim(),
       role: formValues.role
@@ -126,14 +122,13 @@ export default function Signup() {
       {/* <label htmlFor="email">
         Email */}
 				<input
-        placeholder="Email"
-          name="email"
-          type="email"
+        placeholder="Username"
+          name="username"
+          type="text"
           onChange={onInputChange}
-          value={formValues.email}
+          value={formValues.username}
         />
       {/* </label> */}
-      <div className="errors">{formErrors.email}</div>
       <div className="errors">{formErrors.username}</div>
 
       {/* <label htmlFor="password">

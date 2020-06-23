@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from 'react'
 import axios from 'axios'
 import * as Yup from 'yup'
-import fundraiserFormSchema from './fundraiserFormSchema'
+import fundraiserFormSchema from './validation/fundraiserFormSchema'
 import FundraiserCard from './FundraiserCard'
 
 const initialFormValues = {
@@ -107,33 +107,36 @@ export default function FundraiserForm(){
                 <div className='form-gorup inputs'>
                     <h4>Fundraiser Details</h4>
 
-                    <label>Fundraiser Name&nbsp;
+                    {/* <label>Fundraiser Name&nbsp; */}
                         <input
                             value={formValues.title}
                             onChange={onInputChange}
                             name='title'
-                            type='text'                        
+                            type='text'
+                            placeholder="Fundraiser Name"                        
                         />
-                    </label>
+                    {/* </label> */}
 
                     
-                    <label>Image Url&nbsp;
+                    {/* <label>Image Url&nbsp; */}
                         <input
                             value={formValues.imgUrl}
                             onChange={onInputChange}
                             name='imgUrl'
-                            type='text'                        
+                            type='url'
+                            placeholder="Image Url Here: http://www.example.com"                        
                         />
-                    </label>
+                    {/* </label> */}
 
-                    <label>Description&nbsp;
+                    {/* <label>Description&nbsp; */}
                         <input
                             value={formValues.description}
                             onChange={onInputChange}
                             name='description'
-                            type='text'                        
+                            type='text'
+                            placeholder="Description Here"                        
                         />
-                    </label>
+                    {/* </label> */}
                 </div>
 
                 <div className='form-group submit'>

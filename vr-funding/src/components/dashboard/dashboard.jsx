@@ -28,7 +28,10 @@ const Dashboard = props => {
             <DashNav />
             <Router>
                 <PrivateRoute path="/dashboard/profile">
-                <h2>{`Hello, ${userDetails.name}!`}</h2>
+                    <div className="welcome">
+                        <h2>{`Hello, ${userDetails.name}`}</h2>
+                        <button className="button">Settings</button>
+                    </div>
                 </PrivateRoute>
                 <PrivateRoute path="/dashboard/add">
                     <FundraiserForm />
