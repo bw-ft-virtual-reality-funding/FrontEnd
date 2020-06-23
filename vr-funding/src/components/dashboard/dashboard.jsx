@@ -9,7 +9,7 @@ import { useTimeMessage } from "../hooks/useTimeMessage";
 import DashNav from "./dashNav";
 import ProjectView from "./funder/ProjectsView";
 import EditUser from "./editUser";
-import  FindFriend from "./findFriend";
+import  FindFunder from "./FindFunder";
 
 
 const Dashboard = props => {
@@ -22,7 +22,7 @@ const Dashboard = props => {
         axios
             .get(`https://virtual-reality-fundraising.herokuapp.com/api/users/${loggedID}`)
             .then(res => {
-                // console.log(res);
+                console.log(res);
                 setUserDetails(res.data)
             })
             .catch(err => {
@@ -50,8 +50,8 @@ const Dashboard = props => {
                 <PrivateRoute path="/dashboard/edit">
                     <EditUser />
                 </PrivateRoute>
-                <PrivateRoute path="/dashboard/findFriend">
-                   <FindFriend/>
+                <PrivateRoute path="/dashboard/FindFunder">
+                   <FindFunder/>
                 </PrivateRoute>
             </Router>
         </div>

@@ -18,7 +18,7 @@ const initialErr = {
   lastname: "",
   username: "",
   password: "",
-  role:"",
+  role: "",
 };
 
 const initialDisabled = true;
@@ -33,21 +33,19 @@ export default function Signup() {
   const [formErrors, setFormErrors] = useState(initialErr);
   const [user, setUser] = useState(initialUser)
 
-  let history = useHistory();
-
-  
 
   const postNewUser = newUser => {
     axios
       .post(`https://virtual-reality-fundraising.herokuapp.com/api/users/register`, newUser)
       .then(res => {
         console.log(res);
-        useHistory.push("/");
+        window.location.assign("/")
       })
-      .catch(err => {
-        console.log(err);
-      });
-  };
+      // .catch(err => {
+      //     console.log(err);
+      //     setFormErrors({ ...formErrors, cred: "Username is taken." });
+      //   });
+  }
 
   const onInputChange = e => {
     const { name, value } = e.target;
@@ -83,6 +81,7 @@ export default function Signup() {
       role: formValues.role
     };
     postNewUser(newUser);
+    window.location.assign("/")
   };
 
   
@@ -97,58 +96,59 @@ export default function Signup() {
     <form onSubmit={onSubmit}>
       <h1>Sign Up</h1>
       <h3>Create your account.</h3>
+      <div className="errors">{formErrors.cred}</div>
 
       {/* <label htmlFor="firstname">
         First Name&nbsp; */}
-				<input
+      <input
         placeholder="First Name"
-          name="firstname"
-          type="text"
-          onChange={onInputChange}
-          value={formValues.firstname}
-        />
+        name="firstname"
+        type="text"
+        onChange={onInputChange}
+        value={formValues.firstname}
+      />
       {/* </label> */}
       <div className="errors">{formErrors.firstname}</div>
 
       {/* <label htmlFor="lastname">
         Last Name */}
-				<input
+      <input
         placeholder="Last Name"
-          name="lastname"
-          type="text"
-          onChange={onInputChange}
-          value={formValues.lastname}
-        />
+        name="lastname"
+        type="text"
+        onChange={onInputChange}
+        value={formValues.lastname}
+      />
       {/* </label> */}
       <div className="errors">{formErrors.lastname}</div>
 
       {/* <label htmlFor="email">
         Email */}
-				<input
+      <input
         placeholder="Username"
-          name="username"
-          type="text"
-          onChange={onInputChange}
-          value={formValues.username}
-        />
+        name="username"
+        type="text"
+        onChange={onInputChange}
+        value={formValues.username}
+      />
       {/* </label> */}
       <div className="errors">{formErrors.username}</div>
 
       {/* <label htmlFor="password">
         Password */}
-				<input
+      <input
         placeholder="Create Password"
-          name="password"
-          type="password"
-          onChange={onInputChange}
-          value={formValues.password}
-        />
+        name="password"
+        type="password"
+        onChange={onInputChange}
+        value={formValues.password}
+      />
       {/* </label> */}
       <div className="errors">{formErrors.password}</div>
 
       <p>Are you a :</p>
       <div className="role">
-        <input className="fundraiser" type="radio" name="role" onChange={onInputChange} value="fundraiser" checked={formValues.role === "fundraiser"}/>
+        <input className="fundraiser" type="radio" name="role" onChange={onInputChange} value="fundraiser" checked={formValues.role === "fundraiser"} />
         <input className="funder" type="radio" name="role" onChange={onInputChange} value="funder" checked={formValues.role === "funder"} />
       </div>
       <div className="errors">{formErrors.role}</div>

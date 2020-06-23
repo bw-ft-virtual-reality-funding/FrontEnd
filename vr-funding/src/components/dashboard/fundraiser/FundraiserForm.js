@@ -7,18 +7,18 @@ import FundraiserCard from './FundraiserCard'
 const initialFormValues = {
     title: '',
     description: '',
-    imgUrl: '',
+    img_url: '',
 }
 
 const initialFormErrors = {
     title: '',
     description: '',
-    imgUrl: '',
+    img_url: '',
 }
 
 const initialFundraiser = []
 const initialDisabled = true
-const URL = 'https://virtual-reality-fundraising.herokuapp.com/api/users' //using until backend api is ready
+const URL = 'https://virtual-reality-fundraising.herokuapp.com/api/projects'
 
 export default function FundraiserForm(){
 
@@ -27,24 +27,25 @@ export default function FundraiserForm(){
     const [formErrors, setFormErrors] = useState(initialFormErrors)
     const [disabled, setDisabled] = useState(initialDisabled)
 
-    const getFundraisers = () => {
-        axios.get(URL)
-            .then(res => {
-                console.log(res)
-                setFundraiser(res.data.data)
-            })
-            .catch(err => {
-                // debugger
-            })
-    }
+    // const getFundraisers = () => {
+    //     axios.get(URL)
+    //     .then(res => {
+    //         console.log(res)
+    //         setFundraiser(res.data.data)
+    //     })
+    //     .catch(err => {
+    //        debugger
+    //     })
+    // }
 
     const postNewFundraiser = newFundraiser => {
         axios.post(URL, newFundraiser)
         .then(res => {
+            console.log(res)
             setFundraiser([...fundraiser, res.data])
         })
         .catch(err => {
-            // debugger
+            debugger
         })
         .finally(() => {
             setFormValues(initialFormValues)
@@ -84,15 +85,15 @@ export default function FundraiserForm(){
         const newFundraiser = {
           title: formValues.title.trim(),
           description: formValues.description,
-          imgUrl: formValues.imgUrl,
+          img_url: formValues.img_url,
         }
-        
+        // console.log(newFundraiser)
         postNewFundraiser(newFundraiser) 
     }
 
-    useEffect(() => {
-        getFundraisers()
-    }, [])
+    // useEffect(() => {
+    //     getFundraisers()
+    // }, [])
 
     useEffect(() => {
         fundraiserFormSchema.isValid(formValues).then(valid => {
@@ -104,7 +105,7 @@ export default function FundraiserForm(){
         <div className='container'>
             <form className='form container' onSubmit={onSubmit}>
 
-                <div className='form-gorup inputs'>
+                <div className='inputs'>
                     <h4>Fundraiser Details</h4>
 
                     {/* <label>Fundraiser Name&nbsp; */}
@@ -120,11 +121,11 @@ export default function FundraiserForm(){
                     
                     {/* <label>Image Url&nbsp; */}
                         <input
-                            value={formValues.imgUrl}
+                            value={formValues.img_url}
                             onChange={onInputChange}
-                            name='imgUrl'
+                            name='img_url'
                             type='url'
-                            placeholder="Image Url Here: http://www.example.com"                        
+                            placeholder="Image Url Here"                        
                         />
                     {/* </label> */}
 
@@ -139,25 +140,16 @@ export default function FundraiserForm(){
                     {/* </label> */}
                 </div>
 
-                <div className='form-group submit'>
-                    <button disabled={disabled}>Submit</button>
+                <button className="button" disabled={disabled}>Submit</button>
                 
-
+                <div className='form-group submit'>
                     <div className='errors'>
                         <div>{formErrors.title}</div>
-                        <div>{formErrors.imgUrl}</div>
+                        <div>{formErrors.img_url}</div>
                         <div>{formErrors.description}</div>
                     </div>
                 </div>
             </form>
-
-            {
-                fundraiser.map(fundraiser => {
-                    return (
-                        <FundraiserCard key={fundraiser.id} details={fundraiser}/>
-                    )
-                })
-            }
         </div>
     )
 }
