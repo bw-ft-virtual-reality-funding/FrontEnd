@@ -13,7 +13,7 @@
     - https://virtual-reality-fundraising.herokuapp.com/api/register
 
 ## Shape of Data: 
-    ``` [
+[
     {
         "id": 1,
         "username": "admin",
@@ -32,6 +32,7 @@
         "name": "name",
         "role": "funder"
     },
+]
 
 [
     {
@@ -64,7 +65,7 @@
         "description": "These days, fitness classes can be held anywhere- a park, an unfinished basement or a garage- not just at a traditional gym. Certified fitness instructors need an easy way to take the awkwardness out of attendance taking and client payment processing.",
         "img_url": "https://picsum.photos/200"
     }
-] ```
+]
 
 
 ## ☝️ Proposal
