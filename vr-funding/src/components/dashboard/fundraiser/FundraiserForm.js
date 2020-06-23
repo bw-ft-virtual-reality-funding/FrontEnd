@@ -7,13 +7,13 @@ import FundraiserCard from './FundraiserCard'
 const initialFormValues = {
     title: '',
     description: '',
-    imgUrl: '',
+    img_url: '',
 }
 
 const initialFormErrors = {
     title: '',
     description: '',
-    imgUrl: '',
+    img_url: '',
 }
 
 const initialFundraiser = []
@@ -41,10 +41,11 @@ export default function FundraiserForm(){
     const postNewFundraiser = newFundraiser => {
         axios.post(URL, newFundraiser)
         .then(res => {
+            console.log(res)
             setFundraiser([...fundraiser, res.data])
         })
         .catch(err => {
-            // debugger
+            debugger
         })
         .finally(() => {
             setFormValues(initialFormValues)
@@ -84,7 +85,7 @@ export default function FundraiserForm(){
         const newFundraiser = {
           title: formValues.title.trim(),
           description: formValues.description,
-          imgUrl: formValues.imgUrl,
+          img_url: formValues.img_url,
         }
         // console.log(newFundraiser)
         postNewFundraiser(newFundraiser) 
@@ -120,9 +121,9 @@ export default function FundraiserForm(){
                     
                     {/* <label>Image Url&nbsp; */}
                         <input
-                            value={formValues.imgUrl}
+                            value={formValues.img_url}
                             onChange={onInputChange}
-                            name='imgUrl'
+                            name='img_url'
                             type='url'
                             placeholder="Image Url Here"                        
                         />
@@ -144,19 +145,11 @@ export default function FundraiserForm(){
                 <div className='form-group submit'>
                     <div className='errors'>
                         <div>{formErrors.title}</div>
-                        <div>{formErrors.imgUrl}</div>
+                        <div>{formErrors.img_url}</div>
                         <div>{formErrors.description}</div>
                     </div>
                 </div>
             </form>
-
-            {
-                fundraiser.map(fundraiser => {
-                    return (
-                        <FundraiserCard key={fundraiser.id} details={fundraiser}/>
-                    )
-                })
-            }
         </div>
     )
 }

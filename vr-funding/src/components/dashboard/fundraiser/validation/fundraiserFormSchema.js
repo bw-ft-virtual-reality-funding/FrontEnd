@@ -9,7 +9,7 @@ const fundraiserFormSchema = Yup.object().shape({
         .string()
         .min(5, "A description of the fundraiser is required")
         .required("A description is required"),
-    imgUrl: Yup
+    img_url: Yup
         .string()
         .url("Must use a valid Url: http://www.example.com")
         .required("Must include a Url")
