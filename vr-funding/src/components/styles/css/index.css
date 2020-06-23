@@ -141,16 +141,18 @@ table {
   src: local('Ubuntu Regular'), local('Ubuntu-Regular'), url(https://fonts.gstatic.com/s/ubuntu/v14/4iCs6KVjbNBYlgo6eA.ttf) format('truetype');
 }
 * {
-  font-family: 'Ubuntu', sans-serif;
+  font-family: "Ubuntu", sans-serif;
 }
 body {
-  font-family: 'Ubuntu', sans-serif;
+  font-family: "Ubuntu", sans-serif;
   background: #0053df;
   background: linear-gradient(21deg, #0053df 0%, #b7ddff 57%, #ffffff 100%);
+  transition: 0.4s ease;
 }
 .dark {
   background: none;
-  background-color: #2e2c2c;
+  background: #000c20;
+  background: linear-gradient(21deg, #000c20 0%, #1e3f5c 57%, #384a83 100%);
   color: white;
 }
 h1,
@@ -159,12 +161,12 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Krona One', sans-serif;
+  font-family: "Krona One", sans-serif;
 }
 .button {
   text-transform: uppercase;
   background-color: #01014b;
-  border: none;
+  border: transparent 1px solid;
   outline: none;
   color: white;
   padding: 5px 10px;
@@ -178,10 +180,20 @@ h6 {
   text-align: center;
   letter-spacing: 1px;
 }
+.button:hover {
+  background-color: #6dbdff;
+  color: black;
+  border: black 1px solid;
+  transition: 0.3s ease;
+}
 .delete {
   background-color: #f55353;
   margin: 20px;
   width: 200px;
+}
+.delete:hover {
+  background-color: #fbbbbb;
+  color: black;
 }
 nav {
   background: linear-gradient(to right, #020230 0%, #000080 100%);
@@ -214,6 +226,7 @@ nav a {
 }
 #darkMode {
   -webkit-appearance: none;
+  outline: none;
   background-color: #52b1ff;
   height: 20px;
   width: 40px;
