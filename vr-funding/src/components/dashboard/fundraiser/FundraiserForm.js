@@ -29,13 +29,13 @@ export default function FundraiserForm(){
 
     const getFundraisers = () => {
         axios.get(URL)
-            .then(res => {
-                console.log(res)
-                setFundraiser(res.data.data)
-            })
-            .catch(err => {
-                debugger
-            })
+        .then(res => {
+            console.log(res)
+            setFundraiser(res.data.data)
+        })
+        .catch(err => {
+           debugger
+        })
     }
 
     const postNewFundraiser = newFundraiser => {
