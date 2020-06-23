@@ -1,6 +1,8 @@
 import React, { useState, useEffect} from 'react'
 import axios from 'axios'
 import * as Yup from 'yup'
+import fundraiserFormSchema from './fundraiserFormSchema'
+import FundraiserCard from './FundraiserCard'
 
 const initialFormValues = {
     title: '',
@@ -16,53 +18,143 @@ const initialFormErrors = {
 
 const initialFundraiser = []
 const initialDisabled = true
+const URL = 'https://reqres.in/api/users' //using until backend api is ready
 
 export default function FundraiserForm(){
+
+    const [fundraiser, setFundraiser] = useState(initialFundraiser)
+    const [formValues, setFormValues] = useState(initialFormValues)
+    const [formErrors, setFormErrors] = useState(initialFormErrors)
+    const [disabled, setDisabled] = useState(initialDisabled)
+
+    const getFundraisers = () => {
+        axios.get(URL)
+            .then(res => {
+                console.log(res)
+                setFundraiser(res.data.data)
+            })
+            .catch(err => {
+                debugger
+            })
+    }
+
+    const postNewFundraiser = newFundraiser => {
+        axios.post(URL, newFundraiser)
+        .then(res => {
+            setFundraiser([...fundraiser, res.data])
+        })
+        .catch(err => {
+            debugger
+        })
+        .finally(() => {
+            setFormValues(initialFormValues)
+        })
+    }
+
+    const onInputChange = evt => {
+        const name = evt.target.name
+        const value = evt.target.value
+
+        Yup
+        .reach(fundraiserFormSchema, name)
+        .validate(value)
+
+        .then(valid => {
+          setFormErrors({
+            ...formErrors,
+            [name]: ""
+          });
+        })
+        .catch(err => {
+          setFormErrors({
+            ...formErrors,
+            [name]: err.errors[0]
+          });
+        });
+    
+        setFormValues({
+          ...formValues,
+          [name]: value
+        })
+      }
+
+    const onSubmit = evt => {
+        evt.preventDefault()
+
+        const newFundraiser = {
+          title: formValues.title.trim(),
+          description: formValues.description,
+          imgUrl: formValues.imgUrl,
+        }
+        
+        postNewFundraiser(newFundraiser) 
+    }
+
+    useEffect(() => {
+        getFundraisers()
+    }, [])
+
+    useEffect(() => {
+        fundraiserFormSchema.isValid(formValues).then(valid => {
+            setDisabled(!valid);
+        });
+    }, [formValues])
+
     return (
-        <form className='form container'>
-            <div className='form-group submit'>
-                <h2>Add your Fundraiser</h2>
-                <button disabled={}>Submit</button>
-            
+        <div className='container'>
+            <form className='form container' onSubmit={onSubmit}>
 
-                <div className='errors'>
-                    <div></div>
-                    <div></div>
-                    <div></div>
+                <div className='form-gorup inputs'>
+                    <h4>Fundraiser Details</h4>
+
+                    <label>Fundraiser Name&nbsp;
+                        <input
+                            value={formValues.title}
+                            onChange={onInputChange}
+                            name='title'
+                            type='text'                        
+                        />
+                    </label>
+
+                    
+                    <label>Image Url&nbsp;
+                        <input
+                            value={formValues.imgUrl}
+                            onChange={onInputChange}
+                            name='imgUrl'
+                            type='text'                        
+                        />
+                    </label>
+
+                    <label>Description&nbsp;
+                        <input
+                            value={formValues.description}
+                            onChange={onInputChange}
+                            name='description'
+                            type='text'                        
+                        />
+                    </label>
                 </div>
-            </div>
 
-            <div className='form-gorup inputs'>
-                <h4>Fundraiser Details</h4>
-
-                <label>Fundraiser Name&nbsp;
-                    <input
-                        value={}
-                        onChange={}
-                        name='title'
-                        type='text'                        
-                    />
-                </label>
-
+                <div className='form-group submit'>
+                    <button disabled={disabled}>Submit</button>
                 
-                <label>Image Url&nbsp;
-                    <input
-                        value={}
-                        onChange={}
-                        name='imgURL'
-                        type='text'                        
-                    />
-                </label>
 
-                <label>Description&nbsp;
-                    <input
-                        value={}
-                        onChange={}
-                        name='description'
-                        type='text'                        
-                    />
-                </label>
-            </div>
-        </form>
+                    <div className='errors'>
+                        <div>{formErrors.title}</div>
+                        <div>{formErrors.imgUrl}</div>
+                        <div>{formErrors.description}</div>
+                    </div>
+                </div>
+            </form>
+
+            {
+                fundraiser.map(fundraiser => {
+                    return (
+                        <FundraiserCard key={fundraiser.id} details={fundraiser}/>
+                    )
+                })
+            }
+        </div>
     )
 }

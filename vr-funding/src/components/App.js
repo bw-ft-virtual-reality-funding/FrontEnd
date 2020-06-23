@@ -6,6 +6,7 @@ import PrivateRoute from "./utils/PrivateRoute";
 import Login from "./login-signup/Login";
 import Signup from "./login-signup/Signup";
 import { VRProvider } from "./context/VRContext";
+import FundraiserForm from "./dashboard/fundraiser/FundraiserForm"
 
 function App() {
   return (
@@ -22,7 +23,9 @@ function App() {
           </Route>
 
           {/*  DASHBOARD  */}
-          <PrivateRoute path="/dashboard"></PrivateRoute>
+          <PrivateRoute path="/dashboard">
+            <FundraiserForm/>
+          </PrivateRoute>
         </Router>
       </div>
     </VRProvider>
