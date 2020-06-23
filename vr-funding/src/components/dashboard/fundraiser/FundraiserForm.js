@@ -86,7 +86,7 @@ export default function FundraiserForm(){
           description: formValues.description,
           imgUrl: formValues.imgUrl,
         }
-        
+        // console.log(newFundraiser)
         postNewFundraiser(newFundraiser) 
     }
 
