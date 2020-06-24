@@ -36,9 +36,8 @@ const ProjectView = props => {
     //         gsap.fromTo('.projects .container', {opacity:0}, {stagger:1,opacity:1,duration:3})
     //     };
     // });
+    
     window.addEventListener("load", gsap.fromTo('.projects .container', {opacity:0}, {stagger:1,opacity:1,duration:3}) );
-
-    // gsap.fromTo('.projects .container', {opacity:0}, {stagger:1,opacity:1,duration:3})
 
     return (
         <div className="projects" id="test">
