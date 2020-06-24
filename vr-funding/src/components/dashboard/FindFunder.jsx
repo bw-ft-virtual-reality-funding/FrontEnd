@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { axiosWithAuth } from '../utils/axiosWithAuth'
 import gsap from 'gsap'
-import { Button } from '@material-ui/core'
+import { Button, Avatar } from '@material-ui/core'
 
 //Will work on this more tomorrow 
 const initialFunder = []
@@ -32,7 +32,11 @@ export default function FindFunder () {
             <p>Here is a list of our current users</p>
        {funders.map((funder) =>{
            return (
+               <>
             <div>{funder.name} -- {funder.role}</div>
+            {/* <Button color="primary">Im a button</Button>
+            <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" /> */}
+            </>
            )
        })}
       </div>
