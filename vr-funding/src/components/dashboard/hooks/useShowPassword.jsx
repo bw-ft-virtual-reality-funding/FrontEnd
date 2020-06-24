@@ -1,17 +1,20 @@
 import React, { useState } from "react";
 
 export const useShowPassword = () => {
-    const [hidden, setHidden] = useState("password");
+    const [type, setType] = useState("password");
+    const [hidden, setHidden] = useState(true);
 
     const onClickHandler = e => {
         e.preventDefault();
 
-        if(hidden === "text") {
-            setHidden("password");
+        if(type === "text") {
+            setType("password");
+            setHidden(true)
         } else {
-            setHidden("text");
+            setType("text");
+            setHidden(false);
         }
     }
 
-    return [hidden, onClickHandler];
+    return [type, hidden, onClickHandler];
 }
