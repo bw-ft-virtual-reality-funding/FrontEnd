@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
+import {useShowPassword} from "../dashboard/hooks/useShowPassword";
 import signUpFormSchema from "./validation/signUpFormSchema";
 import * as yup from "yup";
 import axios from "axios";
+import hide from "../styles/images/hide.svg";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const initialVal = {
@@ -32,6 +34,8 @@ export default function Signup() {
   //holds the errors which update based on validation
   const [formErrors, setFormErrors] = useState(initialErr);
   const [user, setUser] = useState(initialUser)
+
+  const [hidden, onClickHandler] = useShowPassword();
 
 
   const postNewUser = newUser => {
@@ -119,11 +123,9 @@ export default function Signup() {
         onChange={onInputChange}
         value={formValues.lastname}
       />
-      {/* </label> */}
+
       <div className="errors">{formErrors.lastname}</div>
 
-      {/* <label htmlFor="email">
-        Email */}
       <input
         placeholder="Username"
         name="username"
@@ -131,19 +133,20 @@ export default function Signup() {
         onChange={onInputChange}
         value={formValues.username}
       />
-      {/* </label> */}
+
       <div className="errors">{formErrors.username}</div>
 
-      {/* <label htmlFor="password">
-        Password */}
+<div className="pass">
       <input
         placeholder="Create Password"
         name="password"
-        type="password"
+        type={hidden}
         onChange={onInputChange}
         value={formValues.password}
       />
-      {/* </label> */}
+      <img src={hide} onClick={onClickHandler} />
+      </div>
+
       <div className="errors">{formErrors.password}</div>
 
       <p>Are you a :</p>
