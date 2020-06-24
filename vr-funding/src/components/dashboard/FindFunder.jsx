@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
     height: "125px",
-    width: "400px",
+    width: "375px",
     margin: "10px",
     textAlign: "center",
     padding: '40px 20px',
