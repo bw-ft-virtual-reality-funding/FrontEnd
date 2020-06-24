@@ -130,7 +130,7 @@ export default function FundraiserForm(){
                     {/* </label> */}
 
                     {/* <label>Description&nbsp; */}
-                        <input
+                        <textarea
                             value={formValues.description}
                             onChange={onInputChange}
                             name='description'
