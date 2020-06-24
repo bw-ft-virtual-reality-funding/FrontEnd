@@ -13,7 +13,7 @@ export default function FindFunder () {
       axiosWithAuth().get('https://virtual-reality-fundraising.herokuapp.com/api/users')
 
       .then(response =>{
-          console.log(response)
+          console.log(response.data)
           setFunders(response.data)
       })
 
@@ -25,8 +25,14 @@ export default function FindFunder () {
 
  
     return (
-    <div>
-       hello
-   </div>
+        <div className="full">
+            <h2>Find a User</h2>
+            <p>Here is a list of our current users</p>
+       {funders.map((funder) =>{
+           return (
+            <div>{funder.name} -- {funder.role}</div>
+           )
+       })}
+      </div>
     )
 }
