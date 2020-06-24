@@ -43,7 +43,7 @@ const Dashboard = props => {
                     </div>
                 </PrivateRoute>
                 <PrivateRoute path="/dashboard/add">
-                    <FundraiserForm />
+                    <FundraiserForm URL={`'https://virtual-reality-fundraising.herokuapp.com/api/projects'`}/>
                 </PrivateRoute>
                 <PrivateRoute path="/dashboard/view" exact>
                     <ProjectView />

@@ -14,6 +14,18 @@ form {
 		align-items: center;
 	}
 
+	.pass {
+		width: 90%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		img {
+			height: 50px;
+			width: 25px;
+			cursor: pointer;
+		}
+	}
+
 	textarea {
 		width: 100%;
 		height: 100px;
@@ -123,15 +135,19 @@ form {
 	display: flex;
 	text-align: center;
 	flex-wrap: wrap;
+	margin: 0 auto;
+	width:80%;
+
 	.container {
-		width: 80%;
+		width: 100%;
 		border: 1px solid rgb(210, 210, 210);
 		border-radius: 1rem;
 		box-shadow: 0 0.1rem 1rem -0.2rem navy;
 		margin: 0 auto;
-		margin-top: 30px;
+		margin-top: 20px;
+		margin-bottom: 20px;;
 		padding: 1.6rem;
-		background-color: rgba(207, 204, 204, 0.24);
+		background-color: rgba(207, 204, 204, 0.383);
 
 		h2 {
 			margin: 1rem;
@@ -139,10 +155,13 @@ form {
 
 		.link {
 			margin: 0.5rem;
-			color: rgb(11, 160, 11);
+			margin-bottom: 20px;
+			color: rgb(9, 71, 172);
+			text-shadow: 0 0 1px black;
 
 			&:hover {
-				color: lighten(rgb(11, 160, 11), 8%);
+				transition: 0.4s ease;
+				color: lighten(rgb(9, 78, 189), 15%);
 			}
 		}
 

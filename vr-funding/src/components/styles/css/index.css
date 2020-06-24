@@ -195,6 +195,9 @@ h6 {
   background-color: #fbbbbb;
   color: black;
 }
+.pledge {
+  width: 230px;
+}
 nav {
   background: linear-gradient(to right, #020230 0%, #000080 100%);
   width: 100%;
@@ -262,6 +265,17 @@ form label {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+form .pass {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+form .pass img {
+  height: 50px;
+  width: 25px;
+  cursor: pointer;
 }
 form textarea {
   width: 100%;
@@ -353,26 +367,32 @@ form .inputs input {
   display: flex;
   text-align: center;
   flex-wrap: wrap;
+  margin: 0 auto;
+  width: 80%;
 }
 .projects .container {
-  width: 80%;
+  width: 100%;
   border: 1px solid #d2d2d2;
   border-radius: 1rem;
   box-shadow: 0 0.1rem 1rem -0.2rem navy;
   margin: 0 auto;
-  margin-top: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   padding: 1.6rem;
-  background-color: rgba(207, 204, 204, 0.24);
+  background-color: rgba(207, 204, 204, 0.383);
 }
 .projects .container h2 {
   margin: 1rem;
 }
 .projects .container .link {
   margin: 0.5rem;
-  color: #0ba00b;
+  margin-bottom: 20px;
+  color: #0947ac;
+  text-shadow: 0 0 1px black;
 }
 .projects .container .link:hover {
-  color: #0ec60e;
+  transition: 0.4s ease;
+  color: #1e70f4;
 }
 .projects .container p {
   margin: 1rem;
@@ -441,8 +461,12 @@ form .inputs input {
   display: flex;
   justify-content: center;
 }
+.fundraiser .column .text {
+  width: 50%;
+  min-width: 600px;
+}
 .fundraiser img {
-  width: 500px;
+  width: 400px;
   height: 300px;
   object-fit: cover;
   border-radius: 20px;
@@ -452,4 +476,7 @@ form .inputs input {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.full h2 {
+  margin-top: 30px;
 }

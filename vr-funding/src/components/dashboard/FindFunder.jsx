@@ -28,6 +28,11 @@ export default function FindFunder() {
   useEffect(() => {
     axiosWithAuth()
       .get("https://virtual-reality-fundraising.herokuapp.com/api/users")
+      .then(response =>{
+          console.log(response.data)
+        //   setFunders(response.data)
+          setFunders(response.data.filter(data => capital(data.name)));
+      })
 
       .then((response) => {
         // console.log(response.data);
@@ -46,6 +51,7 @@ export default function FindFunder() {
       return true;
     } else return false;
   };
+  console.log(funders)
  
 
   return (
