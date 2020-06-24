@@ -5,6 +5,7 @@ import signUpFormSchema from "./validation/signUpFormSchema";
 import * as yup from "yup";
 import axios from "axios";
 import hide from "../styles/images/hide.svg";
+import show from "../styles/images/shown.svg";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const initialVal = {
@@ -35,7 +36,7 @@ export default function Signup() {
   const [formErrors, setFormErrors] = useState(initialErr);
   const [user, setUser] = useState(initialUser)
 
-  const [hidden, onClickHandler] = useShowPassword();
+  const [type, hidden, onClickHandler] = useShowPassword();
 
 
   const postNewUser = newUser => {
@@ -140,11 +141,11 @@ export default function Signup() {
       <input
         placeholder="Create Password"
         name="password"
-        type={hidden}
+        type={type}
         onChange={onInputChange}
         value={formValues.password}
       />
-      <img src={hide} onClick={onClickHandler} />
+      <img src={hidden ? show : hide} onClick={onClickHandler} />
       </div>
 
       <div className="errors">{formErrors.password}</div>
