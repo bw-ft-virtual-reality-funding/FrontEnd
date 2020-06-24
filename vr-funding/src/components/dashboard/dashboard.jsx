@@ -9,7 +9,7 @@ import { useTimeMessage } from "./hooks/useTimeMessage";
 import DashNav from "./dashNav";
 import ProjectView from "./funder/ProjectsView";
 import EditUser from "./editUser";
-import  FindFunder from "./FindFunder";
+import FindFunder from "./FindFunder";
 import FundPage from "./funder/fundPage";
 
 
@@ -43,7 +43,12 @@ const Dashboard = props => {
                     </div>
                 </PrivateRoute>
                 <PrivateRoute path="/dashboard/add">
-                    <FundraiserForm URL={`'https://virtual-reality-fundraising.herokuapp.com/api/projects'`}/>
+                    <FundraiserForm
+                        URL={'https://virtual-reality-fundraising.herokuapp.com/api/projects'}
+                        put="false"
+                        values={false}
+                        setIsEditing={false}
+                    />
                 </PrivateRoute>
                 <PrivateRoute path="/dashboard/view" exact>
                     <ProjectView />
@@ -55,7 +60,7 @@ const Dashboard = props => {
                     <EditUser />
                 </PrivateRoute>
                 <PrivateRoute path="/dashboard/FindFunder">
-                   <FindFunder/>
+                    <FindFunder />
                 </PrivateRoute>
             </Router>
         </div>
