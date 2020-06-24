@@ -29,18 +29,12 @@ const ProjectView = props => {
             getProjectsList()
     }, [])
 
-    // document.addEventListener('DOMContentLoaded', function(event) {
-    //     // console.log('DOM fully loaded and parsed');
-    //     window.onload = function() {
-    //         // console.log('Animation');
-    //         gsap.fromTo('.projects .container', {opacity:0}, {stagger:1,opacity:1,duration:3})
-    //     };
-    // });
-    
-    window.addEventListener("load", gsap.fromTo('.projects .container', {opacity:0}, {stagger:1,opacity:1,duration:3}) );
+    window.addEventListener('focus', function(event) {
+        gsap.fromTo('.projects .container', {opacity:0, y:-300}, {stagger:1, y:1, opacity:1, duration:1})
+    });
 
     return (
-        <div className="projects" id="test">
+        <div className="projects">
             {
                 projectsList.map(fundraiser => {
                     return (
