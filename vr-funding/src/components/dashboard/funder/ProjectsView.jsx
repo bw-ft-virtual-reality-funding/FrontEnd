@@ -29,17 +29,19 @@ const ProjectView = props => {
             getProjectsList()
     }, [])
 
-    // document.addEventListener("DOMContentLoaded", function(event) {
-    //     console.log('DOM fully loaded and parsed');
+    // document.addEventListener('DOMContentLoaded', function(event) {
+    //     // console.log('DOM fully loaded and parsed');
     //     window.onload = function() {
-    //         console.log('Animation');
-    //         gsap.to('.projects .container', {stagger:1,autoAlpha:0,x:-500,duration:3})
+    //         // console.log('Animation');
+    //         gsap.fromTo('.projects .container', {opacity:0}, {stagger:1,opacity:1,duration:3})
     //     };
     // });
-    gsap.to('.projects .container', {stagger:1,autoAlpha:0,x:-500,duration:3});
+    window.addEventListener("load", gsap.fromTo('.projects .container', {opacity:0}, {stagger:1,opacity:1,duration:3}) );
+
+    // gsap.fromTo('.projects .container', {opacity:0}, {stagger:1,opacity:1,duration:3})
 
     return (
-        <div className="projects">
+        <div className="projects" id="test">
             {
                 projectsList.map(fundraiser => {
                     return (
@@ -50,5 +52,7 @@ const ProjectView = props => {
         </div>
     )
 }
+
+
 
 export default ProjectView;
