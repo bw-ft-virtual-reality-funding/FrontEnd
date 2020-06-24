@@ -7,6 +7,7 @@ import FundraiserForm from '../fundraiser/FundraiserForm';
 const FundPage = props => {
     const [project, setProject] = useState({});
     const [isEditing, setIsEditing] = useState(false);
+    const [isDeleting, setIsDeleting] = useState(false);
 
     const UrlId = useParams();
     const id = UrlId.id;
@@ -21,6 +22,20 @@ const FundPage = props => {
                 console.log(err);
             })
     }, [id])
+
+    const onDelete = (e) => {
+        e.preventDefault()
+
+        axiosWithAuth()
+            .delete(`https://virtual-reality-fundraising.herokuapp.com/api/projects/${id}`)
+            .then(res => {
+                console.log(res);
+                window.location.assign("/dashboard/view");
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
 
 
     return (
@@ -44,6 +59,26 @@ const FundPage = props => {
                     : ""
             }
 
+            {
+                isDeleting
+                    ?
+                    <div className="modal openModal">
+                        <div className="cancelX" onClick={(e) => {
+                            e.preventDefault();
+                            setIsDeleting(false)
+                        }}>X</div>
+                        <p>Are you sure you want to delete project?</p>
+                        <div className="buttons">
+                            <button className="button" onClick={onDelete}>Yes</button>
+                            <button className="button" onClick={(e) => {
+                                e.preventDefault();
+                                setIsDeleting(false)
+                            }}>No</button>
+                        </div>
+                    </div>
+                    : ""
+            }
+
             <div className="projects">
                 <FundraiserCard details={project} />
             </div>
@@ -51,6 +86,12 @@ const FundPage = props => {
                 <button className="button pledge">Pledge to Campaign</button>
                 <button className="button" onClick={() => setIsEditing(true)}>Edit</button>
             </div>
+            <button className="button delete"
+                onClick={(e) => {
+                    e.preventDefault();
+                    setIsDeleting(true)
+                }}
+            >Delete Project</button>
         </div>
     )
 }
