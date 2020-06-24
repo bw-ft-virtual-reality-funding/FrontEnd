@@ -52,7 +52,7 @@ const EditUser = props => {
             {
                 isDeleting
                     ?
-                    <div className="modal">
+                    <div className="modal openModal">
                         <div className="cancelX" onClick={(e) => {
                             e.preventDefault();
                             setIsDeleting(false)

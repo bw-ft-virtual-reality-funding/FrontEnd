@@ -10,6 +10,7 @@ import DashNav from "./dashNav";
 import ProjectView from "./funder/ProjectsView";
 import EditUser from "./editUser";
 import  FindFunder from "./FindFunder";
+import FundPage from "./funder/fundPage";
 
 
 const Dashboard = props => {
@@ -44,8 +45,11 @@ const Dashboard = props => {
                 <PrivateRoute path="/dashboard/add">
                     <FundraiserForm />
                 </PrivateRoute>
-                <PrivateRoute path="/dashboard/view">
+                <PrivateRoute path="/dashboard/view" exact>
                     <ProjectView />
+                </PrivateRoute>
+                <PrivateRoute path="/dashboard/view/:id">
+                    <FundPage />
                 </PrivateRoute>
                 <PrivateRoute path="/dashboard/edit">
                     <EditUser />
