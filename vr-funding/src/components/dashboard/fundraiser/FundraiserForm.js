@@ -30,16 +30,21 @@ export default function FundraiserForm(props) {
 	const [formErrors, setFormErrors] = useState(initialFormErrors);
 	const [disabled, setDisabled] = useState(initialDisabled);
 
-	const [userDetails, setUserDetails, currentProject, setCurrentProject] = useContext(VRContext);
+	const [
+		userDetails,
+		setUserDetails,
+		currentProject,
+		setCurrentProject,
+	] = useContext(VRContext);
 
 	const postNewFundraiser = newFundraiser => {
-		if (props.put) {
+		if (props.put === "true") {
 			axiosWithAuth()
 				.put(props.URL, newFundraiser)
 				.then(res => {
 					console.log(res);
 					setFundraiser([...fundraiser, res.data]);
-					window.location.assign(`/dashboard/view/${props.id}`)
+					window.location.assign(`/dashboard/view/${props.id}`);
 				})
 				.catch(err => {
 					// debugger;
@@ -49,7 +54,7 @@ export default function FundraiserForm(props) {
 					setFormValues(initialFormValues);
 				});
 		} else {
-			axios
+			axiosWithAuth()
 				.post(props.URL, newFundraiser)
 				.then(res => {
 					console.log(res);
@@ -97,7 +102,7 @@ export default function FundraiserForm(props) {
 		const newFundraiser = {
 			title: formValues.title.trim(),
 			description: formValues.description,
-			img_url: formValues.img_url,
+			img_url: formValues.img_url ? formValues.img_url : "",
 		};
 		postNewFundraiser(newFundraiser);
 	};
