@@ -1,23 +1,42 @@
 import React, { useState, useEffect } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import gsap from "gsap";
-import { Button, Avatar } from "@material-ui/core";
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import { makeStyles } from '@material-ui/core/styles';
-
+import { Card } from "@material-ui/core";
+import FaceIcon from "@material-ui/icons/Face";
+import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-      maxWidth: 345,
-      height: '100px',
-      marginBottom: '10px',
-    },
-  }));
-  
+  root: {
+    maxWidth: 345,
+    height: "300px",
+    width: "400px",
+    marginBottom: "10px",
+    textAlign: "center",
+  },
 
+  flex: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+  },
 
+  h2Style: {
+    fontSize: "30px",
+    padding: "50px 0 20px 0",
+    display: 'flex',
+    alignItems: 'center',
+  },
+  icon: {
+    fontSize: "40px",
+    paddingLeft: '10px',
+  },
 
+  pTag: {
+    fontSize: "20px",
+    paddingBottom: "30px",
+  },
+}));
 
 const initialFunder = [];
 
@@ -28,10 +47,10 @@ export default function FindFunder() {
   useEffect(() => {
     axiosWithAuth()
       .get("https://virtual-reality-fundraising.herokuapp.com/api/users")
-      .then(response =>{
-          console.log(response.data)
+      .then((response) => {
+        console.log(response.data);
         //   setFunders(response.data)
-          setFunders(response.data.filter(data => capital(data.name)));
+        setFunders(response.data.filter((data) => capital(data.name)));
       })
 
       .then((response) => {
@@ -51,25 +70,30 @@ export default function FindFunder() {
       return true;
     } else return false;
   };
-  console.log(funders)
+  console.log(funders);
+
  
 
   return (
     <div className="full">
-      <h2>Find a User</h2>
-      <p>Here is a list of our current users</p>
-
-     {funders.map((data) => {
-         capital(data.name)
-         if(capital(data.name) === true) {
-             return (
-                 <Card className={classes.root}>
-                  <CardHeader>{data.name}</CardHeader>
-                 </Card>
-                     
-             )
-         }
-     })}
+      <div className={classes.flex}>
+        <h2 className={classes.h2Style}>
+          VRFP Users <FaceIcon className={classes.icon} />
+        </h2>
+        <p className={classes.pTag}>Here is a list of our current users</p>
+      </div>
+      {funders.map((data) => {
+        capital(data.name);
+        if (capital(data.name) === true) {
+          return (
+            <Card  className={classes.root}>
+              <h3>{data.name}</h3>
+              <div>{data.role}</div>
+          {/* <icon>😁{}</icon> */}
+            </Card>
+          );
+        }
+      })}
     </div>
   );
 }
