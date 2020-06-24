@@ -9,12 +9,16 @@ export default function FundraiserCard(props) {
 		return <h3>Working on fetching your fundraiser...</h3>;
 	}
 
+	console.log(details.img_url);
+
 	return (
 		<Link to={`/dashboard/view/${details.id}`} className="fundraiser container">
 			<h2 className="link">{details.title}</h2>
 			<div className="column">
-				<img src={details.img_url === "" ? placeholder : details.img_url} />
-				<p>{details.description}</p>
+				<img src={details.img_url === "" || "https://picsum.photos/200" || undefined || null ? placeholder : details.img_url} />
+				<div className="text">
+					<p>{details.description}</p>
+				</div>
 			</div>
 
 		</Link>

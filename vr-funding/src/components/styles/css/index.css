@@ -360,19 +360,23 @@ form .inputs input {
   border-radius: 1rem;
   box-shadow: 0 0.1rem 1rem -0.2rem navy;
   margin: 0 auto;
-  margin-top: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   padding: 1.6rem;
-  background-color: rgba(207, 204, 204, 0.24);
+  background-color: rgba(207, 204, 204, 0.383);
 }
 .projects .container h2 {
   margin: 1rem;
 }
 .projects .container .link {
   margin: 0.5rem;
-  color: #0ba00b;
+  margin-bottom: 20px;
+  color: #0947ac;
+  text-shadow: 0 0 1px black;
 }
 .projects .container .link:hover {
-  color: #0ec60e;
+  transition: 0.4s ease;
+  color: #1e70f4;
 }
 .projects .container p {
   margin: 1rem;
@@ -441,6 +445,10 @@ form .inputs input {
   display: flex;
   justify-content: center;
 }
+.fundraiser .column .text {
+  width: 50%;
+  min-width: 600px;
+}
 .fundraiser img {
   width: 500px;
   height: 300px;
@@ -452,4 +460,7 @@ form .inputs input {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.full h2 {
+  margin-top: 30px;
 }
