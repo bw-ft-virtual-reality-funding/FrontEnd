@@ -39,7 +39,7 @@ export default function Signup() {
       .post(`https://virtual-reality-fundraising.herokuapp.com/api/users/register`, newUser)
       .then(res => {
         console.log(res);
-        window.location.assign("/")
+        // window.location.assign("/")
       })
       // .catch(err => {
       //     console.log(err);

@@ -6,6 +6,14 @@ const initialFunder = []
 
 export default function FindFunder () {
   const [funders, setFunders] = useState(initialFunder)
+
+  const capital = (str) => {
+        const firstLetter = str.substring(0, 1);
+
+        if (firstLetter == firstLetter.toUpperCase()) {
+            return true
+        } else return false
+  }
   
 
   useEffect (() => {
@@ -22,7 +30,11 @@ export default function FindFunder () {
       })
   }, [])
 
+  console.log(funders)
 
+funders.filter(data => {
+    capital(data.name);
+})
  
     return (
         <div className="full">
