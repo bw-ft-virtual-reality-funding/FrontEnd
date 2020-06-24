@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { axiosWithAuth } from '../utils/axiosWithAuth'
+import gsap from 'gsap'
+import { Button } from '@material-ui/core'
 
 //Will work on this more tomorrow 
 const initialFunder = []
@@ -22,7 +24,7 @@ export default function FindFunder () {
       })
   }, [])
 
-
+  
  
     return (
         <div className="full">
