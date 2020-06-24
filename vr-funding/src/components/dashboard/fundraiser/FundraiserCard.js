@@ -11,9 +11,12 @@ export default function FundraiserCard(props) {
 
 	return (
 		<Link to={`/dashboard/view/${details.id}`} className="fundraiser container">
-			<h2>{details.title}</h2>
-			<img src={details.img_url === "" ? placeholder : details.img_url} />
-			<p>{details.description}</p>
+			<h2 className="link">{details.title}</h2>
+			<div className="column">
+				<img src={details.img_url === "" ? placeholder : details.img_url} />
+				<p>{details.description}</p>
+			</div>
+
 		</Link>
 	);
 }

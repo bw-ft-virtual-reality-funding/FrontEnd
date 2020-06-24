@@ -6,6 +6,14 @@ const initialFunder = []
 
 export default function FindFunder () {
   const [funders, setFunders] = useState(initialFunder)
+
+  const capital = (str) => {
+        const firstLetter = str.substring(0, 1);
+
+        if (firstLetter == firstLetter.toUpperCase()) {
+            return true
+        } else return false
+  }
   
 
   useEffect (() => {
@@ -13,7 +21,7 @@ export default function FindFunder () {
       axiosWithAuth().get('https://virtual-reality-fundraising.herokuapp.com/api/users')
 
       .then(response =>{
-          console.log(response)
+          console.log(response.data)
           setFunders(response.data)
       })
 
@@ -22,11 +30,21 @@ export default function FindFunder () {
       })
   }, [])
 
+  console.log(funders)
 
+funders.filter(data => {
+    capital(data.name);
+})
  
     return (
-    <div>
-       hello
-   </div>
+        <div className="full">
+            <h2>Find a User</h2>
+            <p>Here is a list of our current users</p>
+       {funders.map((funder) =>{
+           return (
+            <div>{funder.name} -- {funder.role}</div>
+           )
+       })}
+      </div>
     )
 }

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { VRContext } from "../context/VRContext";
 import logo from "../styles/images/VRFP_logo.png";
-import { useDarkMode } from "../hooks/useDarkMode";
+import { useDarkMode } from "./hooks/useDarkMode";
 
 const DashNav = props => {
     const [userDetails, setUserDetails] = useContext(VRContext)
