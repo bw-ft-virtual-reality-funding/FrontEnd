@@ -22,6 +22,7 @@ const initialErr = {
 };
 
 const initialDisabled = true;
+const initialUser = []
 
 export default function Signup() {
   //determines button clickability
@@ -30,6 +31,7 @@ export default function Signup() {
   const [formValues, setFormValues] = useState(initialVal);
   //holds the errors which update based on validation
   const [formErrors, setFormErrors] = useState(initialErr);
+  const [user, setUser] = useState(initialUser)
 
 
   const postNewUser = newUser => {
@@ -82,9 +84,9 @@ export default function Signup() {
     window.location.assign("/")
   };
 
+  
   useEffect(() => {
     signUpFormSchema.isValid(formValues).then(valid => {
-
       //if form values meet validation enable the button
       setDisabled(!valid);
     });
@@ -149,7 +151,9 @@ export default function Signup() {
         <input className="fundraiser" type="radio" name="role" onChange={onInputChange} value="fundraiser" checked={formValues.role === "fundraiser"} />
         <input className="funder" type="radio" name="role" onChange={onInputChange} value="funder" checked={formValues.role === "funder"} />
       </div>
-      <button className="button" type="submit" /*disabled={disabled}*/>Sign Up Now</button>
+      <div className="errors">{formErrors.role}</div>
+      
+      <button className="button" type="submit" disabled={disabled}>Sign Up Now</button>
       <div className="errors">
         <div></div>
         <div></div>
