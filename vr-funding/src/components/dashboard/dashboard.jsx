@@ -39,7 +39,10 @@ const Dashboard = props => {
                     <div className="welcome">
                         <h2>{`${greet}, ${userDetails.name}`}</h2>
                         <p>{userDetails.role}</p>
-                        <Link className="button" to="/dashboard/edit" >Settings</Link>
+                        <div className="buttons">
+                            <Link className="button" to="/dashboard/edit" >Settings</Link>
+                            <Link className="button" to="/dashboard/FindFunder">Find Users</Link>
+                        </div>
                     </div>
                 </PrivateRoute>
                 <PrivateRoute path="/dashboard/add">
