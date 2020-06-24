@@ -22,8 +22,8 @@ export default function FindFunder () {
 
       .then(response =>{
           console.log(response.data)
-          setFunders(response.data)
-          setFunders(funders.filter(data => capital(data.name)));
+        //   setFunders(response.data)
+          setFunders(response.data.filter(data => capital(data.name)));
       })
 
       .catch(err =>{
