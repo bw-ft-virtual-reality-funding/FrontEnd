@@ -5,7 +5,7 @@ import FundraiserForm from "./fundraiser/FundraiserForm";
 import { VRContext } from "../context/VRContext";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import axios from "axios";
-import { useTimeMessage } from "../hooks/useTimeMessage";
+import { useTimeMessage } from "./hooks/useTimeMessage";
 import DashNav from "./dashNav";
 import ProjectView from "./funder/ProjectsView";
 import EditUser from "./editUser";

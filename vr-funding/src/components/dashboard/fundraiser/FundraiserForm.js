@@ -39,7 +39,7 @@ export default function FundraiserForm(){
     // }
 
     const postNewFundraiser = newFundraiser => {
-        axios.post(URL, newFundraiser)
+        axios.post(`https://virtual-reality-fundraising.herokuapp.com/api/projects`, newFundraiser)
         .then(res => {
             console.log(res)
             setFundraiser([...fundraiser, res.data])
@@ -79,7 +79,7 @@ export default function FundraiserForm(){
         })
       }
 
-    const onSubmit = evt => {
+    const onSubmitHandler = evt => {
         evt.preventDefault()
 
         const newFundraiser = {
@@ -103,7 +103,7 @@ export default function FundraiserForm(){
 
     return (
         <div className='container'>
-            <form className='form container' onSubmit={onSubmit}>
+            <form className='form container' onSubmit={onSubmitHandler}>
 
                 <div className='inputs'>
                     <h4>Fundraiser Details</h4>
@@ -140,7 +140,7 @@ export default function FundraiserForm(){
                     {/* </label> */}
                 </div>
 
-                <button className="button" disabled={disabled}>Submit</button>
+                <button className="button" type="submit" disabled={disabled}>Submit</button>
                 
                 <div className='form-group submit'>
                     <div className='errors'>
