@@ -2,10 +2,27 @@ import React, { useState, useEffect } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import gsap from "gsap";
 import { Button, Avatar } from "@material-ui/core";
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import { makeStyles } from '@material-ui/core/styles';
+
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+      maxWidth: 345,
+      height: '100px',
+      marginBottom: '10px',
+    },
+  }));
+  
+
+
+
 
 const initialFunder = [];
 
 export default function FindFunder() {
+  const classes = useStyles();
   const [funders, setFunders] = useState(initialFunder);
 
   useEffect(() => {
@@ -40,7 +57,9 @@ export default function FindFunder() {
          capital(data.name)
          if(capital(data.name) === true) {
              return (
-                 <div>{data.name} -- {data.role}</div>
+                 <Card className={classes.root}>
+                  <CardHeader>{data.name}</CardHeader>
+                 </Card>
                      
              )
          }
