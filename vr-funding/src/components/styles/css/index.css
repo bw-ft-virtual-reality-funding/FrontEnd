@@ -437,6 +437,7 @@ form .inputs input {
   width: 500px;
   height: 300px;
   object-fit: cover;
+  border-radius: 20px;
 }
 .full {
   height: 90vh;
