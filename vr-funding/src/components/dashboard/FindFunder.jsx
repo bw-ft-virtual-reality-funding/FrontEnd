@@ -1,20 +1,12 @@
-<<<<<<< HEAD
-import React, { useState, useEffect } from 'react'
-import { axiosWithAuth } from '../utils/axiosWithAuth'
-//Will work on this more tomorrow 
-const initialFunder = []
-
-export default function FindFunder () {
-  const [funders, setFunders] = useState(initialFunder);
-=======
 import React, { useState, useEffect } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import axios from "axios";
 import gsap from "gsap";
 import { Card } from "@material-ui/core";
 import FaceIcon from "@material-ui/icons/Face";
 import { makeStyles } from "@material-ui/core/styles";
-import funder from "../styles/images/funder.png"
-import fundraiser from "../styles/images/fundraiser.png"
+import funder from "../styles/images/funder.png";
+import fundraiser from "../styles/images/fundraiser.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
   },
->>>>>>> 4316c97fede8fd826623f932cde249aae833bee4
 
   h2Style: {
     fontSize: "30px",
@@ -72,8 +63,6 @@ const useStyles = makeStyles((theme) => ({
       width: '50px',
       marginTop: '5px',
   },
-
-
 
 }));
 
@@ -157,7 +146,6 @@ export default function FindFunder() {
       }
       
     })}
-    
 
       </div>
 
