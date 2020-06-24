@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { axiosWithAuth } from '../utils/axiosWithAuth'
-
 //Will work on this more tomorrow 
 const initialFunder = []
 
 export default function FindFunder () {
-  const [funders, setFunders] = useState(initialFunder)
+  const [funders, setFunders] = useState(initialFunder);
 
   const capital = (str) => {
         const firstLetter = str.substring(0, 1);
