@@ -1,9 +1,6 @@
 import React, { useState, useEffect} from 'react';
-import axios from 'axios'
 import FundraiserCard from '../fundraiser/FundraiserCard'
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
-
-import { gsap } from 'gsap'
 
 const ProjectView = props => {
     const url = `https://virtual-reality-fundraising.herokuapp.com/api/projects`
@@ -28,10 +25,6 @@ const ProjectView = props => {
         useEffect(() => {
             getProjectsList()
     }, [])
-
-    window.addEventListener('focus', function(event) {
-        gsap.fromTo('.projects .container', {opacity:0, y:-300}, {stagger:1, y:1, opacity:1, duration:1})
-    });
 
     return (
         <div className="projects">
