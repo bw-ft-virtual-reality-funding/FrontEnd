@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
-import axios from "axios";
 import gsap from "gsap";
 import { Card } from "@material-ui/core";
 import FaceIcon from "@material-ui/icons/Face";
@@ -79,6 +78,11 @@ const initialFunder = [];
 export default function FindFunder() {
   const classes = useStyles();
   const [funders, setFunders] = useState(initialFunder);
+
+  //start of animations
+  
+  
+  
 
   useEffect(() => {
     axiosWithAuth()
