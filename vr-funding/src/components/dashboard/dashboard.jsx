@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import PrivateRoute from "../utils/PrivateRoute";
 import FundraiserForm from "./fundraiser/FundraiserForm";
@@ -16,11 +16,16 @@ import defaultPFP from "../styles/images/defaultPFP.jpg";
 const Dashboard = props => {
     const [userDetails, setUserDetails] = useContext(VRContext);
     const [greet] = useTimeMessage("Good Morning", "Good Afternoon");
-
-    const PFP = localStorage.getItem("pfp");
+    const [PFP, setPFP] = useState(defaultPFP);
 
     useEffect(() => {
         const loggedID = localStorage.getItem("id");
+
+            if (localStorage.getItem("pfp")) {
+                setPFP(JSON.parse(localStorage.getItem("pfp")));
+            } else {
+                setPFP(defaultPFP);
+            }
 
         axios
             .get(`https://virtual-reality-fundraising.herokuapp.com/api/users/${loggedID}`)
@@ -33,6 +38,7 @@ const Dashboard = props => {
             })
     }, [])
 
+
     return (
         <div className="dashboard">
             <DashNav />
@@ -40,7 +46,7 @@ const Dashboard = props => {
                 <PrivateRoute path="/dashboard/profile">
                     <div className="welcome">
                         <h2>{`${greet}, ${userDetails.name}`}</h2>
-                        <img src={PFP ? PFP : defaultPFP} className="pfp" />
+                        <img src={PFP} className="pfp" />
                         <p>{userDetails.role}</p>
                         <div className="buttons">
                             <Link className="button" to="/dashboard/edit" >Settings</Link>
