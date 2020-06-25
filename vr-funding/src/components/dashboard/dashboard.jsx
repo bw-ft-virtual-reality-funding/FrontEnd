@@ -11,6 +11,7 @@ import EditUser from "./editUser";
 import FindFunder from "./FindFunder";
 import FundPage from "./funder/fundPage";
 import defaultPFP from "../styles/images/defaultPFP.jpg";
+import PaymentDetails from "./funder/paymentDetails";
 
 
 const Dashboard = props => {
@@ -50,7 +51,7 @@ const Dashboard = props => {
                         {
                             userDetails.role === "fundraiser"
                                 ? <Link className="button" to="/dashboard/view">View Projects</Link>
-                                : ""
+                                : <PaymentDetails />
                         }
 
                     </div>
