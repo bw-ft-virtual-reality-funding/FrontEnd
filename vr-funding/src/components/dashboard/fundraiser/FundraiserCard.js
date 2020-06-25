@@ -14,8 +14,11 @@ export default function FundraiserCard(props) {
 		container.map(element => {
 			console.log(element)
 			element.addEventListener("mouseenter", function() {
-				gsap.fromTo(element, {opacity:0, y:-300}, {stagger:1, y:1, opacity:1, duration:1})
-			}, {once : true});
+				gsap.to(element, {x:15, y:15})
+			});
+			element.addEventListener("mouseleave", function() {
+				gsap.to(element, {x:1, y:1})
+			});
 		});
 	}, [])
 	
