@@ -132,7 +132,7 @@ export default function FundraiserForm(props) {
 						onChange={onInputChange}
 						name="img_url"
 						type="url"
-						placeholder="Image Url Here"
+						placeholder="Image Url (Optional)"
 					/>
 
 					<textarea
