@@ -86,13 +86,25 @@ export default function FindFunder() {
   //GSAP Animate
   //useRef to hold mutable value in this case the Card Container
   let cardBox = useRef(null);
+  let content = useRef(null)
   var tl = gsap.timeline();
 
   useEffect(() => {
-    gsap.to(cardBox, 0, {css: {visibility: 'visible'}});//final state
-    tl.from(cardBox, 2, { y: 1300, ease: Power3.easeOut })//initial state
-      .from(cardBox, 3, {scale: .8, ease: Power3.easeOut})
-    // console.log(cardBox);
+    //Content vars
+    const headLine = content.children[0]
+    const subLine = content.children[1]
+
+    //User card animation 
+    gsap.to(cardBox, 0, {css: {visibility: 'visible'}});
+    tl.from(cardBox, 2, { y: 1300, ease: Power3.easeOut }, 'Start')
+      .from(cardBox, 3, {scale: .8, ease: Power3.easeOut}, .3)
+
+    //Content animation in progress
+    // tl.staggerFrom([headLine, subLine], 1, {
+    //   y:44,
+    //   ease: Power3.easeOut,
+    //   delay: .8,
+    // }, .15, 'Start')//start will allow both animations to run at the same time
   }, []);
 
   useEffect(() => {
@@ -124,7 +136,7 @@ export default function FindFunder() {
 
   return (
     <div className={classes.center} height>
-      <div className={classes.flex}>
+      <div ref={(el) => (content = el)} className={classes.flex}>
         <h2 className={classes.h2Style}>
           VRFP Users <FaceIcon className={classes.icon} />
         </h2>
@@ -168,4 +180,3 @@ export default function FindFunder() {
   );
 }
 
-gsap.to("#spin", { rotation: 27, x: 100, duration: 1 });
