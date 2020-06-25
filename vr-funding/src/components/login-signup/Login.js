@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useHistory, Link } from "react-router-dom";
+import {useShowPassword} from "../dashboard/hooks/useShowPassword";
+import hide from "../styles/images/hide.svg";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import * as yup from "yup";
 import loginFormSchema from "./validation/loginFormSchema";
@@ -24,6 +26,9 @@ const Login = props => {
 	const [disabled, setDisabled] = useState(initialDisabled);
 	const [formValues, setFormValues] = useState(initialVal);
 	const [formErrors, setFormErrors] = useState(initialErr);
+	const [hidden, onClickHandler] = useShowPassword();
+
+
 
 	let history = useHistory();
 
@@ -110,15 +115,16 @@ const Login = props => {
 				onChange={onInputChange}
 				value={formValues.username}
 			/>
-
+			<div className="pass">
 			<input
 				placeholder="Password"
 				name="password"
-				type="password"
+				type={hidden}
 				onChange={onInputChange}
 				value={formValues.password}
 			/>
-
+			 <img src={hide} onClick={onClickHandler} />
+</div>
 			<button className="button" type="submit" disabled={disabled}>Login</button>
 			<div className="errors">
 				<div>{formErrors.username}</div>
