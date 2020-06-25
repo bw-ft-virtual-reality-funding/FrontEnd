@@ -21,13 +21,11 @@ const Dashboard = props => {
     useEffect(() => {
         const loggedID = localStorage.getItem("id");
 
-        setTimeout(() => {
             if (localStorage.getItem("pfp")) {
                 setPFP(JSON.parse(localStorage.getItem("pfp")));
             } else {
                 setPFP(defaultPFP);
             }
-        }, 300)
 
         axios
             .get(`https://virtual-reality-fundraising.herokuapp.com/api/users/${loggedID}`)
