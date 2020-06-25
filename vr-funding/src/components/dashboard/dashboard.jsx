@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Link } from "react-router-dom";
 import PrivateRoute from "../utils/PrivateRoute";
 import FundraiserForm from "./fundraiser/FundraiserForm";
 import { VRContext } from "../context/VRContext";
-import { axiosWithAuth } from "../utils/axiosWithAuth";
 import axios from "axios";
 import { useTimeMessage } from "./hooks/useTimeMessage";
 import DashNav from "./dashNav";
@@ -11,11 +10,14 @@ import ProjectView from "./funder/ProjectsView";
 import EditUser from "./editUser";
 import FindFunder from "./FindFunder";
 import FundPage from "./funder/fundPage";
+import defaultPFP from "../styles/images/defaultPFP.jpg";
 
 
 const Dashboard = props => {
     const [userDetails, setUserDetails] = useContext(VRContext);
     const [greet] = useTimeMessage("Good Morning", "Good Afternoon");
+
+    const PFP = localStorage.getItem("pfp");
 
     useEffect(() => {
         const loggedID = localStorage.getItem("id");
@@ -38,11 +40,19 @@ const Dashboard = props => {
                 <PrivateRoute path="/dashboard/profile">
                     <div className="welcome">
                         <h2>{`${greet}, ${userDetails.name}`}</h2>
+                        <img src={PFP ? PFP : defaultPFP} className="pfp" />
                         <p>{userDetails.role}</p>
                         <div className="buttons">
                             <Link className="button" to="/dashboard/edit" >Settings</Link>
                             <Link className="button" to="/dashboard/FindFunder">Find Users</Link>
                         </div>
+
+                        {
+                            userDetails.role === "fundraiser"
+                                ? <Link className="button" to="/dashboard/view">View Projects</Link>
+                                : ""
+                        }
+
                     </div>
                 </PrivateRoute>
                 <PrivateRoute path="/dashboard/add">
@@ -53,18 +63,23 @@ const Dashboard = props => {
                         setIsEditing={false}
                     />
                 </PrivateRoute>
+
                 <PrivateRoute path="/dashboard/view" exact>
                     <ProjectView />
                 </PrivateRoute>
+
                 <PrivateRoute path="/dashboard/view/:id">
                     <FundPage />
                 </PrivateRoute>
+
                 <PrivateRoute path="/dashboard/edit">
                     <EditUser />
                 </PrivateRoute>
+
                 <PrivateRoute path="/dashboard/FindFunder">
                     <FindFunder />
                 </PrivateRoute>
+
             </Router>
         </div>
     )

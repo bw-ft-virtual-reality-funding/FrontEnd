@@ -2,12 +2,17 @@ import React, { useContext, useState } from "react";
 import { VRContext } from "../context/VRContext";
 import axios from "axios";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import defaultPFP from "../styles/images/defaultPFP.jpg";
 
 const EditUser = props => {
 
     const [userDetails, setUserDetails] = useContext(VRContext);
     const [formValues, setFormValues] = useState(userDetails);
+    const [imageURL, setImageURL] = useState(undefined);
     const [isDeleting, setIsDeleting] = useState(false);
+    const [isAddingPFP, setIsAddingPFP] = useState(false);
+
+    const PFP = localStorage.getItem("pfp");
 
     const onChangeHandler = e => {
         setFormValues({
@@ -48,7 +53,7 @@ const EditUser = props => {
     }
 
     return (
-        <form onSubmit={onSubmitHandler}>
+        <form className="edit" onSubmit={onSubmitHandler}>
             {
                 isDeleting
                     ?
@@ -69,14 +74,65 @@ const EditUser = props => {
                     : ""
             }
 
+            {
+                isAddingPFP
+                    ?
+                    <div className="modal openModal">
+                        <div className="cancelX" onClick={(e) => {
+                            e.preventDefault();
+                            setIsAddingPFP(false)
+                        }}>X</div>
+                        <p>Change Profile Picture</p>
+                        <input 
+                        type="text"
+                        placeholder="Image URL"
+                        onChange={(e) => {
+                            setImageURL(e.target.value);
+                        }}
+                        />
+                        <div className="buttons">
+                            <button 
+                            className="button"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                localStorage.setItem("pfp", imageURL)
+                                setIsAddingPFP(false)
+                            }}
+                            >Accept</button>
+                            <button className="button" onClick={(e) => {
+                                e.preventDefault();
+                                setIsAddingPFP(false)
+                            }}>Cancel</button>
+                        </div>
+                        <button 
+                        className="button delete"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            localStorage.removeItem("pfp");
+                            setIsAddingPFP(false)
+                        }}
+                        >Remove</button>
+                    </div>
+                    : ""
+            }
+
             <h2>Change User Details</h2>
+            <div className="pfpContainer">
+                <img 
+                src={PFP ? PFP : defaultPFP} 
+                className="pfp" 
+                onClick={() => {
+                    setIsAddingPFP(true);
+                }}
+                />
+            </div>
             <input
                 type="text"
                 value={formValues.name}
                 onChange={onChangeHandler}
                 name="name"
             />
-                        <input
+            <input
                 type="text"
                 value={formValues.username}
                 onChange={onChangeHandler}

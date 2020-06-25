@@ -7,6 +7,10 @@ form {
 	// margin: 10px 0;
 	height: 90.5vh;
 
+	h2 {
+		margin-bottom: 5px;
+	}
+
 	label {
 		width: 100%;
 		display: flex;
@@ -167,6 +171,34 @@ form {
 
 		p {
 			margin: 1rem;
+		}
+	}
+}
+
+.edit {
+	img {
+		cursor: pointer;
+		&:hover {
+			opacity: 0.2;
+			transition: 0.3s ease;
+		}
+	}
+
+	.pfpContainer {
+		&::before {
+			height: 100px;
+			width: 100px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			text-shadow: 0 0 1px black;
+			content: "Edit";
+			text-transform: uppercase;
+			font-weight: bold;
+			color: rgb(79, 79, 134);
+			position: absolute;
+			border-radius: 50%;
+			z-index: -1;
 		}
 	}
 }
