@@ -4,10 +4,7 @@ import { useParams } from "react-router-dom";
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
 import FundraiserForm from '../fundraiser/FundraiserForm';
 import { loadStripe } from "@stripe/stripe-js";
-import { Elements } from "@stripe/react-stripe-js";
-import { CardElement } from "@stripe/react-stripe-js";
-
-const stripePromise = loadStripe(process.env.PUBLISHABLE_KEY);
+import PaymentDetails from "./paymentDetails";
 
 const FundPage = props => {
     const [project, setProject] = useState({});
@@ -94,11 +91,7 @@ const FundPage = props => {
                             setIsFunding(false);
                         }}>X</div>
                         <h2>Add your payment details</h2>
-                        <Elements stripe={stripePromise}>
-                            <form>
-                                <CardElement />
-                            </form>
-                        </Elements>
+                        <PaymentDetails />
                     </div>
                     : ""
             }
