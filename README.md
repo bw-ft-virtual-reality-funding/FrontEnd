@@ -112,7 +112,13 @@
 
 ### What 3rd party frameworks/libraries are you considering using?
 
-- Npm, axios, yup, styled components(possible), materialUI(stretch)
+- Npm
+- axios
+- yup
+- materialUI
+- GSAP
+- react-credit-cards
+- react-router-dom
 
 - Styling via less/css
 
