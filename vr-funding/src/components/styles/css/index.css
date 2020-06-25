@@ -496,6 +496,19 @@ form .inputs input {
   border-radius: 50%;
   object-fit: cover;
 }
+#PaymentForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  width: 75%;
+  height: 40%;
+  overflow: hidden;
+}
+#PaymentForm form {
+  width: 100%;
+}
 .fundraiser {
   text-decoration: none;
   color: inherit;
