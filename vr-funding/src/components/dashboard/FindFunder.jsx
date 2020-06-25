@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
-import gsap from "gsap";
+import  gsap  from "gsap";
 import { Card } from "@material-ui/core";
 import FaceIcon from "@material-ui/icons/Face";
 import { makeStyles } from "@material-ui/core/styles";
@@ -69,6 +69,7 @@ const useStyles = makeStyles((theme) => ({
 
 const initialFunder = [];
 
+
 export default function FindFunder() {
   const classes = useStyles();
   const [funders, setFunders] = useState(initialFunder);
@@ -77,7 +78,7 @@ export default function FindFunder() {
     axiosWithAuth()
       .get("https://virtual-reality-fundraising.herokuapp.com/api/users")
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         //   setFunders(response.data)
         setFunders(response.data.filter((data) => capital(data.name)));
       })
@@ -99,15 +100,7 @@ export default function FindFunder() {
       return true;
     } else return false;
   };
-  console.log(funders);
-
- const badge = funders.map((data) => {
-     if(data.role === 'funder'){
-         return 'THIS'
-     } else if (data.role === 'fundraiser'){
-         return 'THAT'
-     }
- })
+//   console.log(funders);
 
   return (
     <div className="full">
@@ -126,7 +119,7 @@ export default function FindFunder() {
         if (capital(data.name) === true && data.role === 'funder') 
         {
           return (
-            <Card  className={classes.root}>
+            <Card id="spin"  className={classes.root}>
               <h3 className={classes.h3Style}>{data.name}</h3>
               <div className={classes.role}>{data.role}</div>
               <hr width="50%"/>
@@ -137,7 +130,7 @@ export default function FindFunder() {
         else if(capital(data.name) === true && data.role === 'fundraiser')
         {
             return (
-              <Card  className={classes.root}>
+              <Card id="spin" className={classes.root}>
                 <h3 className={classes.h3Style}>{data.name}</h3>
                 <div className={classes.role}>{data.role}</div>
                 <hr width="50%"/>
@@ -154,3 +147,5 @@ export default function FindFunder() {
     </div>
   );
 }
+
+gsap.to("#spin", {rotation: 27, x: 100, duration: 1});
