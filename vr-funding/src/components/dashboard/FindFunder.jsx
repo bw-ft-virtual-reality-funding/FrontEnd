@@ -1,12 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
-import gsap from "gsap";
+//Style using GSAP and Material UI
+import gsap, { Power3 } from "gsap";
 import { Card } from "@material-ui/core";
 import FaceIcon from "@material-ui/icons/Face";
 import { makeStyles } from "@material-ui/core/styles";
+//Assets
 import funder from "../styles/images/funder.png";
 import fundraiser from "../styles/images/fundraiser.png";
 
+//CSS styling here
 const useStyles = makeStyles(() => ({
   root: {
     maxWidth: 345,
@@ -22,8 +25,8 @@ const useStyles = makeStyles(() => ({
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "column",
-    width: '100%',
-    height: '100vh',
+    width: "100%",
+    height: "100vh",
   },
 
   flex: {
@@ -55,6 +58,7 @@ const useStyles = makeStyles(() => ({
     flexWrap: "wrap",
     justifyContent: "center",
     alignItems: "center",
+    visibility: 'hidden'
   },
 
   h3Style: {
@@ -79,10 +83,17 @@ export default function FindFunder() {
   const classes = useStyles();
   const [funders, setFunders] = useState(initialFunder);
 
-  //start of animations
-  
-  
-  
+  //GSAP Animate
+  //useRef to hold mutable value in this case the Card Container
+  let cardBox = useRef(null);
+  var tl = gsap.timeline();
+
+  useEffect(() => {
+    gsap.to(cardBox, 0, {css: {visibility: 'visible'}});//final state
+    tl.from(cardBox, 2, { y: 1300, ease: Power3.easeOut })//initial state
+      .from(cardBox, 3, {scale: .8, ease: Power3.easeOut})
+    // console.log(cardBox);
+  }, []);
 
   useEffect(() => {
     axiosWithAuth()
@@ -110,7 +121,6 @@ export default function FindFunder() {
       return true;
     } else return false;
   };
-  //   console.log(funders);
 
   return (
     <div className={classes.center} height>
@@ -121,12 +131,14 @@ export default function FindFunder() {
         <p className={classes.pTag}>Here is a list of our current users</p>
       </div>
 
-      <div className={classes.cards}>
+      <div ref={(el) => (cardBox = el)} className={classes.cards}>
+        {" "}
+        {/* used 'ref' to help target this div for gsap*/}
         {funders.map((data) => {
           capital(data.name);
           if (capital(data.name) === true && data.role === "funder") {
             return (
-              <Card id="spin" className={classes.root}>
+              <Card className={classes.root}>
                 <h3 className={classes.h3Style}>{data.name}</h3>
                 <div className={classes.role}>{data.role}</div>
                 <hr width="50%" />
@@ -140,7 +152,7 @@ export default function FindFunder() {
             data.role === "fundraiser"
           ) {
             return (
-              <Card id="spin" className={classes.root}>
+              <Card className={classes.root}>
                 <h3 className={classes.h3Style}>{data.name}</h3>
                 <div className={classes.role}>{data.role}</div>
                 <hr width="50%" />
