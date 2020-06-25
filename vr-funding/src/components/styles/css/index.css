@@ -476,6 +476,7 @@ form .inputs input {
   height: 500px;
   width: 800px;
   position: absolute;
+  margin-top: 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;

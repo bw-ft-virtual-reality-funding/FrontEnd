@@ -12,7 +12,7 @@ const EditUser = props => {
     const [isDeleting, setIsDeleting] = useState(false);
     const [isAddingPFP, setIsAddingPFP] = useState(false);
 
-    const PFP = localStorage.getItem("pfp");
+    const PFP = JSON.parse(localStorage.getItem("pfp"));
 
     const onChangeHandler = e => {
         setFormValues({
@@ -95,7 +95,7 @@ const EditUser = props => {
                             className="button"
                             onClick={(e) => {
                                 e.preventDefault();
-                                localStorage.setItem("pfp", imageURL)
+                                localStorage.setItem("pfp", JSON.stringify(imageURL))
                                 setIsAddingPFP(false)
                             }}
                             >Accept</button>
