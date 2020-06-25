@@ -120,7 +120,7 @@ const EditUser = props => {
             <div className="pfpContainer">
                 <img 
                 src={PFP ? PFP : defaultPFP} 
-                className="pfp" 
+                className="pfpEdit" 
                 onClick={() => {
                     setIsAddingPFP(true);
                 }}
