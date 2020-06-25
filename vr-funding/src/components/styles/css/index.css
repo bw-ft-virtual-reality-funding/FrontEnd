@@ -387,6 +387,7 @@ form .inputs input {
   flex-wrap: wrap;
   margin: 0 auto;
   width: 70%;
+  z-index: -1;
 }
 .projects .container {
   width: 100%;
@@ -508,6 +509,9 @@ form .inputs input {
 }
 #PaymentForm form {
   width: 100%;
+}
+#PaymentForm form input {
+  width: 80%;
 }
 .fundraiser {
   text-decoration: none;
