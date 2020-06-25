@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {useShowPassword} from "../dashboard/hooks/useShowPassword";
 import signUpFormSchema from "./validation/signUpFormSchema";
 import * as yup from "yup";
