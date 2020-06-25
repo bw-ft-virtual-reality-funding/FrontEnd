@@ -26,8 +26,21 @@ const DashNav = props => {
 
     return (
         <nav id="dashNav">
-            <img id="logo" src={logo} />
-            <input type="checkbox" name="darkMode" id="darkMode" onClick={toggle} checked={darkMode} />
+            <img
+                id="logo"
+                src={logo}
+                onClick={() => {
+                    logOut();
+                    window.location.assign("https://vrfundingplatform.netlify.app/");
+                }}
+            />
+            <input
+                type="checkbox"
+                name="darkMode"
+                id="darkMode"
+                onClick={toggle}
+                checked={darkMode}
+            />
             {userDetails.role === "fundraiser"
                 ? <a href="/dashboard/add">Add Project</a>
                 : <a href="/dashboard/view">Fund Project</a>
