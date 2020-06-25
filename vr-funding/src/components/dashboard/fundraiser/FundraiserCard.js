@@ -2,7 +2,6 @@ import React , { useEffect } from "react";
 import { Link } from "react-router-dom";
 import placeholder from "../../styles/images/placeholder.png";
 import { gsap } from 'gsap'
-import TweenLite from 'gsap'
 
 export default function FundraiserCard(props) {
 	const { details } = props;
@@ -13,9 +12,9 @@ export default function FundraiserCard(props) {
 		console.log(container)
 
 		container.map(element => {
-			
+			console.log(element)
 			element.addEventListener("mouseenter", function() {
-				gsap.fromTo('.projects .container', {opacity:0, y:-300}, {stagger:1, y:1, opacity:1, duration:1})
+				gsap.fromTo(element, {opacity:0, y:-300}, {stagger:1, y:1, opacity:1, duration:1})
 			}, {once : true});
 		});
 	}, [])
