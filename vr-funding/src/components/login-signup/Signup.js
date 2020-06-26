@@ -6,7 +6,6 @@ import * as yup from "yup";
 import axios from "axios";
 import hide from "../styles/images/hide.svg";
 import show from "../styles/images/shown.svg";
-import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const initialVal = {
   firstname: "",
@@ -28,11 +27,8 @@ const initialDisabled = true;
 const initialUser = []
 
 export default function Signup() {
-  //determines button clickability
   const [disabled, setDisabled] = useState(initialDisabled);
-  //holds current form values
   const [formValues, setFormValues] = useState(initialVal);
-  //holds the errors which update based on validation
   const [formErrors, setFormErrors] = useState(initialErr);
   const [user, setUser] = useState(initialUser)
 
@@ -44,12 +40,8 @@ export default function Signup() {
       .post(`https://virtual-reality-fundraising.herokuapp.com/api/users/register`, newUser)
       .then(res => {
         console.log(res);
-        // window.location.assign("/")
+       
       })
-      // .catch(err => {
-      //     console.log(err);
-      //     setFormErrors({ ...formErrors, cred: "Username is taken." });
-      //   });
   }
 
   const onInputChange = e => {
@@ -92,7 +84,6 @@ export default function Signup() {
   
   useEffect(() => {
     signUpFormSchema.isValid(formValues).then(valid => {
-      //if form values meet validation enable the button
       setDisabled(!valid);
     });
   }, [formValues]);
@@ -103,8 +94,6 @@ export default function Signup() {
       <h3>Create your account.</h3>
       <div className="errors">{formErrors.cred}</div>
 
-      {/* <label htmlFor="firstname">
-        First Name&nbsp; */}
       <input
         placeholder="First Name"
         name="firstname"
@@ -112,11 +101,10 @@ export default function Signup() {
         onChange={onInputChange}
         value={formValues.firstname}
       />
-      {/* </label> */}
+     
       <div className="errors">{formErrors.firstname}</div>
 
-      {/* <label htmlFor="lastname">
-        Last Name */}
+   
       <input
         placeholder="Last Name"
         name="lastname"

@@ -58,7 +58,7 @@ const useStyles = makeStyles(() => ({
     flexWrap: "wrap",
     justifyContent: "center",
     alignItems: "center",
-    visibility: 'hidden'
+    visibility: "hidden",
   },
 
   h3Style: {
@@ -86,18 +86,21 @@ export default function FindFunder() {
   //GSAP Animate
   //useRef to hold mutable value in this case the Card Container
   let cardBox = useRef(null);
-  let content = useRef(null)
+  let content = useRef(null);
   var tl = gsap.timeline();
 
   useEffect(() => {
-    //Content vars
-    const headLine = content.children[0]
-    const subLine = content.children[1]
+    //User card animation
+    gsap.to([cardBox, content], 0, { css: { visibility: "visible" } });
+    tl.from(
+      cardBox,
+      2,
+      { y: 1300, opacity: 0, ease: "circ" },
+      "Start"
+    ).from(cardBox, 2, { scale: 0.8, ease:"circ"}, 0.1);
 
-    //User card animation 
-    gsap.to(cardBox, 0, {css: {visibility: 'visible'}});
-    tl.from(cardBox, 2, { y: 1300, ease: Power3.easeOut }, 'Start')
-      .from(cardBox, 3, {scale: .8, ease: Power3.easeOut}, .3)
+    //Header animation
+    gsap.from(content, {duration: 1.3, opacity: 0, scale: 0.1, ease: "back"})
 
     //Content animation in progress
     // tl.staggerFrom([headLine, subLine], 1, {
@@ -150,7 +153,7 @@ export default function FindFunder() {
           capital(data.name);
           if (capital(data.name) === true && data.role === "funder") {
             return (
-              <Card className={classes.root}>
+              <Card ref={(el) => (cardBox = el)}className={classes.root}>
                 <h3 className={classes.h3Style}>{data.name}</h3>
                 <div className={classes.role}>{data.role}</div>
                 <hr width="50%" />
@@ -179,4 +182,3 @@ export default function FindFunder() {
     </div>
   );
 }
-

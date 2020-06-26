@@ -6,7 +6,6 @@ import show from "../styles/images/shown.svg";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import * as yup from "yup";
 import loginFormSchema from "./validation/loginFormSchema";
-import axios from "axios";
 import { VRContext } from "../context/VRContext";
 
 const initialVal = {
@@ -32,20 +31,6 @@ const Login = props => {
 
 
 	let history = useHistory();
-
-	// const loginUser = newUser => {
-	// 	axios
-	// 		.post("https://regres.in/api/users", newUser)
-	// 		.then(response => {
-	// 			console.log(response);
-	// 		})
-	// 		.catch(err => {
-	// 			console.log(err);
-	// 		})
-	// 		.finally(() => {
-	// 			setFormValues(initialVal);
-	// 		});
-	// };
 
 	const onInputChange = e => {
 		const { name, value } = e.target;
@@ -99,7 +84,6 @@ const Login = props => {
 
 	useEffect(() => {
 		loginFormSchema.isValid(formValues).then(valid => {
-			//if values meet validation, enable the login button
 			setDisabled(!valid);
 		});
 	}, [formValues]);
